@@ -29,7 +29,7 @@ function harness(){const app=new Element('app'),dialog=new Element('editor'),fee
 test('UI event handlers create, edit, persist, update counts, validate and generate a handover',async()=>{
  const h=harness();await import('../dist/app.mjs?integration=1');
  assert.match(h.app.innerHTML,/Referral register/);assert.match(h.app.innerHTML,/<strong>9<\/strong>/);
- h.click('new-acts-referral');h.submit({journeyStatus:'Awaiting assessment',receivedDate:'2026-10-12',receivedTime:'',route:'Ward team',reasonForReferral:'Synthetic assessment request',alias:'Fictional Jordan',site:'Poole',ward:'Demo ward',practitioner:'priya',discharge:'2026-10-15'});
+ h.click('new-acts-referral');h.submit({journeyStatus:'Awaiting assessment',receivedDate:'2026-10-12',receivedTime:'',route:'Ward team',reasonForReferral:'Synthetic assessment request',alias:'Fictional Jordan',practitioner:'priya'});
  assert.equal(h.saved().referrals.length,7);const id=h.saved().referrals.at(-1).id;assert.equal(id,'ACTS-DEMO-007');assert.match(h.app.innerHTML,/Fictional Jordan’s ACTS journey/);
  h.click('goal');h.submit({text:'Reconnect with local support.'});
  h.click('recovery-context');h.submit({preferences:'Written instructions',resources:'Fictional contact card',review:'2026-10-13',barrierReview:'Reviewed'});
@@ -76,4 +76,14 @@ test('Treatment event handler validates dates, saves edits, switches timeline de
  h.submit(data);assert.equal(h.dialog.open,true);assert.match(h.find('dialog-error').textContent,/Planned/);data.date='2026-10-12';h.submit(data);assert.equal(h.saved().referrals[1].events.length,3);const e=h.saved().referrals[1].events.at(-1);assert.ok(e.recordedAt);h.click('timeline-view',{view:'detailed'});assert.equal(document.activeElement.dataset.view,'detailed');assert.match(h.app.innerHTML,/Contact duration/);assert.match(h.app.innerHTML,/25 minutes/);assert.match(h.app.innerHTML,/AUDIT score \(recorded\)/);
  h.click('event',{id:e.id});data.outcome='Updated fictional outcome';h.submit(data);assert.equal(h.saved().referrals[1].events.at(-1).recordedAt,e.recordedAt);assert.equal(h.saved().referrals[1].events.at(-1).outcome,data.outcome);
  h.click('tab',{tab:'handover'});assert.match(h.find('summary-content').value,/Updated fictional outcome/);await import('../dist/app.mjs?journey=2');h.click('open',{id:'ACTS-DEMO-002'});assert.match(h.app.innerHTML,/Fictional assessment completed/);
+});
+
+test('Referral intake excludes inpatient context, which is recorded separately later and survives referral edits',async()=>{
+ const h=harness();await import('../dist/app.mjs?intake=1');h.click('new-acts-referral');
+ for(const name of ['site','ward','discharge'])assert.ok(!h.dialog.innerHTML.includes('name="'+name+'"'));
+ const intake={alias:'Fictional intake check',receivedDate:'2026-10-12',receivedTime:'09:00',route:'Ward team',journeyStatus:'Awaiting assessment',reasonForReferral:'Recovery support requested',practitioner:'priya'};
+ h.submit({...intake,site:'Ignored extra value',ward:'Ignored extra value',discharge:'2026-10-18'});const id=h.saved().referrals.at(-1).id;let r=h.saved().referrals.at(-1);assert.deepEqual([r.site,r.ward,r.discharge],['','','']);assert.ok(!h.app.innerHTML.includes('Site / ward'));assert.ok(!h.app.innerHTML.includes('<small>Planned discharge</small>'));
+ h.click('tab',{tab:'actions'});h.click('inpatient-context');h.submit({site:'Poole',ward:'Demo ward',discharge:'2026-10-18'});r=h.saved().referrals.at(-1);assert.deepEqual([r.site,r.ward,r.discharge],['Poole','Demo ward','2026-10-18']);assert.match(r.activityEvents.at(-1).title,/Inpatient and discharge context/);
+ h.click('edit-acts-referral');for(const name of ['site','ward','discharge'])assert.ok(!h.dialog.innerHTML.includes('name="'+name+'"'));h.submit({...intake,reasonForReferral:'Updated recovery support request'});r=h.saved().referrals.at(-1);assert.deepEqual([r.site,r.ward,r.discharge],['Poole','Demo ward','2026-10-18']);assert.equal(r.reasonForReferral,'Updated recovery support request');
+ await import('../dist/app.mjs?intake=2');h.click('open',{id});h.click('tab',{tab:'actions'});assert.match(h.app.innerHTML,/Demo ward/);assert.match(h.app.innerHTML,/18 Oct 2026/);h.click('tab',{tab:'handover'});assert.match(h.find('summary-content').value,/Site: Poole \| Ward: Demo ward/);
 });

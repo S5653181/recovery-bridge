@@ -20,7 +20,7 @@ The automated checks use Node.js with its built-in test runner. Domain tests exe
 | Persistence failures are visible | Failed writes preserve previous state and keep the form open | Browser-specific quota and disabled-storage cases need real-browser checks |
 | Untrusted text is escaped | A fictional HTML-like scenario label renders as text | Not a penetration test or production security assessment |
 
-**27 automated tests passed** at the final verification run: two contrast checks, seventeen domain/migration/timeline tests and eight event-handler tests. JavaScript syntax checks also passed. The test output is reproducible using the supplied source package.
+**28 automated tests passed** at the final verification run: two contrast checks, seventeen domain/migration/timeline tests and nine event-handler tests. JavaScript syntax checks also passed. The test output is reproducible using the supplied source package.
 
 ## Accessibility design and checks
 
@@ -80,3 +80,7 @@ The full browser accessibility audit remains outstanding. No usability results o
 The GitHub Pages version was exercised in Chrome at a 1348px desktop viewport. A fictional ACTS referral was created, an assessment event saved and its outcome edited, then the page refreshed and the saved event reopened. The same event appeared in summary, detailed view and handover. Future-dated completion was rejected with a visible error. Closed filtering retrieved Casey and reconciled the filtered counts. Tab/Space switched timeline views; End navigated the workspace to Handover. Native event forms restored focus on close. A focus-restoration issue on the timeline view switch was found and corrected with a regression assertion; follow-up browser verification used the updated version.
 
 The live journey layout was visually reviewed. These focused workflow checks do not replace comprehensive keyboard traversal, assistive-technology testing, zoom/reflow, tablet devices or print/PDF pagination. Full WCAG 2.2 AA conformance remains unverified.
+
+## Referral intake refinement checks
+
+The actual New/Edit referral handlers exclude site, ward and planned discharge. A regression workflow creates a referral with those details blank, records them later through the separate Discharge actions context form, edits the original referral without overwriting the context, reopens saved data and checks the handover. No schema migration or dataset reset is needed for this refinement.

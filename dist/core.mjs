@@ -1,4 +1,4 @@
-import {isOpen,assessed,timeline,JOURNEY_STATUSES} from './journey.mjs?v=2.0.1';
+import {isOpen,assessed,timeline,JOURNEY_STATUSES} from './journey.mjs?v=2.0.2';
 export const ACTION_STATUSES=['Not recorded','Pending','In progress','Completed','Declined','Not applicable'];
 export const REFERRAL_STATUSES=['Not recorded','Preparation','Submitted','Accepted','Declined','Not applicable'];
 export const FOLLOW_STATUSES=['Not recorded','Pending','Confirmed','Completed','Declined','Not applicable'];

@@ -105,7 +105,7 @@
 <p>Search by referral identifier, fictional name, reason, goal, action or treatment event. Filter by journey status, site, ward, assigned practitioner, planned discharge date and action status. The default view shows open journeys: Awaiting assessment, Active treatment and Follow-up. Choose <strong>All journeys</strong> or <strong>Closed</strong> to retrieve earlier journeys. <strong>My referrals</strong> filters by the selected demonstration practitioner; it is not authentication.</p>
 <p>Select an attention count to filter the same records used to calculate the counts. The ACTS referrals card clears the attention filter. All demonstration staff views can edit synthetic records.</p>
 <h3>Create or edit an ACTS referral</h3>
-<p>Choose <strong>New ACTS referral</strong>. Record the fictional patient label, received date and optional time, referral route, reason, assigned ACTS practitioner, location and journey status. Add planned discharge when known. Dates can remain missing and are labelled Not recorded. <strong>Edit referral</strong> updates these fields. Journey status is staff controlled; closing it does not complete actions or prove clinical clearance.</p>
+<p>Choose <strong>New ACTS referral</strong>. Record the fictional patient label, received date and optional time, referral route, reason, assigned ACTS practitioner and journey status. Site, ward and planned discharge are not collected in the referral form. Dates can remain missing and are labelled Not recorded. <strong>Edit referral</strong> updates these fields. Journey status is staff controlled; closing it does not complete actions or prove clinical clearance.</p>
 <h3>Record the treatment journey</h3>
 <p>The <strong>Treatment journey</strong> tab opens by default. Its milestone cards summarise recorded evidence for referral, assessment, treatment/support, discharge and follow-up. They are not clinical progress scores. A planned assessment remains Planned until its actual outcome is recorded.</p>
 <p>Choose <strong>Add treatment event</strong> for triage, initial contact, initial/full assessment, review, detox start/end, recovery planning, support intervention, onward referral activity, discharge planning/discharge, follow-up, journey closure or another event. Enter a brief title, event date, optional time, status, practitioner, method/location, notes, outcome and next action. Contact duration and a previously assessed AUDIT score are optional; the app generates no interpretation or treatment recommendation.</p>
@@ -114,7 +114,8 @@
 <p>Changes to goals, support, barriers, actions, onward referrals, follow-up or referral metadata also appear as <strong>Record updates</strong>. These show the save time and demonstration account, not the clinical occurrence date or an authenticated author. Select Treatment events to focus on contacts and milestones. Editing a treatment event updates that event; this is not an immutable audit log.</p>
 <h3>Recovery and discharge coordination</h3>
 <p>Under <strong>Recovery support</strong>, record the person&#39;s goals, preferences, resources, review and relevant barriers. Support discussion, offer, decision and arrangement are independent: Discussed, Offered, Accepted and Arranged are different stages. Keep declined decisions visible.</p>
-<p>Under <strong>Discharge actions</strong>, add tasks or choose relevant example checklist items. Assign owners and due dates. Complete records a timestamp; Reopen restores Pending and clears its current completion timestamp. Missing owners/dates remain visible. Declined and Not applicable are distinct from Completed.</p>
+<p>Under <strong>Discharge actions</strong>, use <strong>Add context / Edit context</strong> in <strong>Inpatient &amp; discharge context</strong> to record site, ward and planned discharge later, only when relevant. These optional planning details are separate from referral intake. Existing saved context is retained when editing a referral.</p>
+<p>Add tasks or choose relevant example checklist items. Assign owners and due dates. Complete records a timestamp; Reopen restores Pending and clears its current completion timestamp. Missing owners/dates remain visible. Declined and Not applicable are distinct from Completed.</p>
 <p>Under <strong>Onward support</strong>, track referrals ACTS makes to other fictional services. These are separate from the original ACTS referral. Record preparation, submission, acceptance, consent, response and next action. Submission does not demonstrate engagement. Record follow-up separately; confirmation requires date, method, details and practitioner. No referral is transmitted.</p>
 <h3>Review and share the handover</h3>
 <p><strong>Handover</strong> generates an editable preview with the ACTS referral details and dated treatment journey, recovery goals/preferences, agreed support, actions/owners, onward referral status, follow-up and unresolved barriers. Missing information stays visible. Save edited draft before leaving. Print/save as PDF or Export text uses the preview. When source details change, the preview refreshes rather than reusing a stale draft. Nothing is sent to a service.</p>
@@ -203,7 +204,7 @@
 </tr>
 <tr>
 <td>B: Create and edit ACTS referrals</td>
-<td>Fictional name, generated identifier, location, practitioner and discharge date</td>
+<td>Fictional name, generated identifier, received date/time, route, reason, practitioner and journey status; optional inpatient/discharge context recorded later</td>
 <td>New ACTS referral / Edit referral; interaction and storage tests</td>
 </tr>
 <tr>
@@ -499,6 +500,8 @@
 </tr>
 </tbody></table></div>
 <p>6 completed + 3 declined/not applicable + 9 outstanding = 18 actions across all journeys. Missing sections and planned treatment events are separate from action counts.</p>
+<h3>Referral intake refinement</h3>
+<p>Site, ward and planned discharge date are excluded from both New ACTS referral and Edit referral. A separate optional Inpatient &amp; discharge context form in Discharge actions records these details later. The referral header focuses on receipt, journey status, practitioner and coordination work. Existing saved context is preserved; later updates appear in the timeline and handover. The regression test verifies blank context at intake, separate later entry, preserved context after referral edits, refresh persistence and handover accuracy.</p>
 </section>
 <section id="section-4"><h2>Behavioural design rationale</h2>
 <p>Target behaviour: staff record a person-centred recovery plan, allocate and update coordination actions, verify referral and follow-up progress, and review a clear handover.</p>
@@ -699,7 +702,7 @@
 <td>Overrides the person&#39;s recorded choice or conflates Declined with Completed.</td>
 </tr>
 <tr>
-<td>6. Create a fictional ACTS referral for Jordan received on 12 Oct 2026 from the Ward team at Poole, Demo ward, assigned to Priya, planned discharge 18 Oct 2026. Select only the recovery-goals and follow-up items from the example checklist.</td>
+<td>6. Create a fictional ACTS referral for Jordan received on 12 Oct 2026 from the Ward team, assigned to Priya. During discharge planning, record Poole, Demo ward and planned discharge 18 Oct 2026 in the separate inpatient/discharge context. Select only the recovery-goals and follow-up items from the example checklist.</td>
 <td>New record saved; two relevant Pending actions with reviewed owner/date; remaining sections explicitly missing.</td>
 <td>Copies all irrelevant checklist items or invents referral details.</td>
 </tr>
@@ -859,6 +862,7 @@
 </tbody></table></div>
 <p>For journey tasks measure chronological interpretation accuracy, correct separation of ACTS/onward referrals, event date versus save time, planned versus completed, task time, assistance and errors. Interview: “Does one referral represent the way ACTS follows a person&#39;s journey?”, “Which events are missing?”, “When would you use summary or detail?”, “What would you expect to happen when someone is discharged or re-referred?”</p>
 <p>Use these alongside the SUS, TAM and AIM/IAM/FIM plan above; verify original instrument wording and use requirements before administration. No instrument results or staff findings are fabricated.</p>
+<p>Referral intake observation: confirm staff can create a referral without site, ward or planned discharge, and can find the optional context form later when inpatient/discharge coordination becomes relevant. Record any assumption that these details must be known before ACTS can accept a referral.</p>
 </section>
 <section id="section-6"><h2>Verification, accessibility and limitations</h2>
 <p>Prototype v2.0 · Checks performed 12 October 2026</p>
@@ -928,7 +932,7 @@
 <td>Not a penetration test or production security assessment</td>
 </tr>
 </tbody></table></div>
-<p><strong>27 automated tests passed</strong> at the final verification run: two contrast checks, seventeen domain/migration/timeline tests and eight event-handler tests. JavaScript syntax checks also passed. The test output is reproducible using the supplied source package.</p>
+<p><strong>28 automated tests passed</strong> at the final verification run: two contrast checks, seventeen domain/migration/timeline tests and nine event-handler tests. JavaScript syntax checks also passed. The test output is reproducible using the supplied source package.</p>
 <h3>Accessibility design and checks</h3>
 <p>The target is WCAG 2.2 AA; this is not a conformance claim. The primary standard is <a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a>. The focus and target guidance were checked against the W3C explanations for <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html">Focus Not Obscured</a> and <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html">Target Size (Minimum)</a>.</p>
 <div class="table-wrap"><table>
@@ -1023,6 +1027,8 @@
 <h3>Live browser checks (12 October 2026)</h3>
 <p>The GitHub Pages version was exercised in Chrome at a 1348px desktop viewport. A fictional ACTS referral was created, an assessment event saved and its outcome edited, then the page refreshed and the saved event reopened. The same event appeared in summary, detailed view and handover. Future-dated completion was rejected with a visible error. Closed filtering retrieved Casey and reconciled the filtered counts. Tab/Space switched timeline views; End navigated the workspace to Handover. Native event forms restored focus on close. A focus-restoration issue on the timeline view switch was found and corrected with a regression assertion; follow-up browser verification used the updated version.</p>
 <p>The live journey layout was visually reviewed. These focused workflow checks do not replace comprehensive keyboard traversal, assistive-technology testing, zoom/reflow, tablet devices or print/PDF pagination. Full WCAG 2.2 AA conformance remains unverified.</p>
+<h3>Referral intake refinement checks</h3>
+<p>The actual New/Edit referral handlers exclude site, ward and planned discharge. A regression workflow creates a referral with those details blank, records them later through the separate Discharge actions context form, edits the original referral without overwriting the context, reopens saved data and checks the handover. No schema migration or dataset reset is needed for this refinement.</p>
 </section>
 <section id="section-7"><h2>GitHub repository and Pages hosting</h2>
 <p>This copy is prepared for a public repository named <code>recovery-bridge</code> and independent GitHub Pages hosting. It contains no hosting identity, credentials or dependency on the previous hosting provider. Links within the application and research pack are relative, so the application works under a project URL such as <code>https://&lt;your-account&gt;.github.io/recovery-bridge/</code>.</p>

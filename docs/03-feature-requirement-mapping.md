@@ -10,7 +10,7 @@ The implementation is intentionally limited to staff evaluation with synthetic A
 | A: Search and filters | Search, site, ward, worker, inclusive discharge range, action status and attention filter | Overview; filter tests |
 | A: Labelled, reconciling counts | Counts derive from the exact ACTS referral collection displayed | Domain tests plus rendered-count assertions |
 | B: Coherent workspace | ACTS referral metadata, five section tabs and next-step prompt | ACTS referral workspace |
-| B: Create and edit ACTS referrals | Fictional name, generated identifier, location, practitioner and discharge date | New ACTS referral / Edit referral; interaction and storage tests |
+| B: Create and edit ACTS referrals | Fictional name, generated identifier, received date/time, route, reason, practitioner and journey status; optional inpatient/discharge context recorded later | New ACTS referral / Edit referral; interaction and storage tests |
 | C: Goals and preferences | Multiple goal entities; short context, resources and review fields | Recovery support |
 | C: Separate support stages | Independent discussion, offer, decision and arrangement values | Recovery support forms and cards |
 | C: Barriers and agreed actions | Structured type/status with short context and agreed action | Recovery support; barrier review status |
@@ -75,3 +75,7 @@ Reference date: 12 October 2026. Default filter: All open journeys. Choose All j
 | **Default open view: 5** | **1 assessment to record** | **13** | **4** | **0** | **9** | **3** | **2** | **2** | **3** |
 
 6 completed + 3 declined/not applicable + 9 outstanding = 18 actions across all journeys. Missing sections and planned treatment events are separate from action counts.
+
+## Referral intake refinement
+
+Site, ward and planned discharge date are excluded from both New ACTS referral and Edit referral. A separate optional Inpatient & discharge context form in Discharge actions records these details later. The referral header focuses on receipt, journey status, practitioner and coordination work. Existing saved context is preserved; later updates appear in the timeline and handover. The regression test verifies blank context at intake, separate later entry, preserved context after referral edits, refresh persistence and handover accuracy.

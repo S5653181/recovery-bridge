@@ -12,7 +12,7 @@ Select an attention count to filter the same records used to calculate the count
 
 ## Create or edit an ACTS referral
 
-Choose **New ACTS referral**. Record the fictional patient label, received date and optional time, referral route, reason, assigned ACTS practitioner, location and journey status. Add planned discharge when known. Dates can remain missing and are labelled Not recorded. **Edit referral** updates these fields. Journey status is staff controlled; closing it does not complete actions or prove clinical clearance.
+Choose **New ACTS referral**. Record the fictional patient label, received date and optional time, referral route, reason, assigned ACTS practitioner and journey status. Site, ward and planned discharge are not collected in the referral form. Dates can remain missing and are labelled Not recorded. **Edit referral** updates these fields. Journey status is staff controlled; closing it does not complete actions or prove clinical clearance.
 
 ## Record the treatment journey
 
@@ -30,7 +30,9 @@ Changes to goals, support, barriers, actions, onward referrals, follow-up or ref
 
 Under **Recovery support**, record the person's goals, preferences, resources, review and relevant barriers. Support discussion, offer, decision and arrangement are independent: Discussed, Offered, Accepted and Arranged are different stages. Keep declined decisions visible.
 
-Under **Discharge actions**, add tasks or choose relevant example checklist items. Assign owners and due dates. Complete records a timestamp; Reopen restores Pending and clears its current completion timestamp. Missing owners/dates remain visible. Declined and Not applicable are distinct from Completed.
+Under **Discharge actions**, use **Add context / Edit context** in **Inpatient & discharge context** to record site, ward and planned discharge later, only when relevant. These optional planning details are separate from referral intake. Existing saved context is retained when editing a referral.
+
+Add tasks or choose relevant example checklist items. Assign owners and due dates. Complete records a timestamp; Reopen restores Pending and clears its current completion timestamp. Missing owners/dates remain visible. Declined and Not applicable are distinct from Completed.
 
 Under **Onward support**, track referrals ACTS makes to other fictional services. These are separate from the original ACTS referral. Record preparation, submission, acceptance, consent, response and next action. Submission does not demonstrate engagement. Record follow-up separately; confirmation requires date, method, details and practitioner. No referral is transmitted.
 
