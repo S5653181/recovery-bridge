@@ -2,6 +2,8 @@
 
 A working staff-facing research prototype for alcohol recovery and discharge planning. All scenarios, staff and service directory entries are synthetic. The application supports planning, ownership, referrals, follow-up and an editable handover; it does not make clinical decisions.
 
+[Open the live research prototype](https://s5653181.github.io/recovery-bridge/)
+
 ## Run
 
 ```bash

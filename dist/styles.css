@@ -8,3 +8,5 @@
 @media print{body{background:white;color:#111}#app,#feedback,dialog,.skip{display:none!important}#print-area{display:block!important;font-size:11pt;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}@page{size:A4;margin:18mm}#print-area h1{font-size:16pt} }
 
 .sidebar :focus-visible{outline-color:#f0c574}
+
+.searchbox input{padding-left:39px}
