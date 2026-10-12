@@ -20,7 +20,7 @@ The automated checks use Node.js with its built-in test runner. Domain tests exe
 | Persistence failures are visible | Failed writes preserve previous state and keep the form open | Browser-specific quota and disabled-storage cases need real-browser checks |
 | Untrusted text is escaped | A fictional HTML-like scenario label renders as text | Not a penetration test or production security assessment |
 
-**26 automated tests passed** at the final verification run: two contrast checks, sixteen domain/migration/timeline tests and eight event-handler tests. JavaScript syntax checks also passed. The test output is reproducible using the supplied source package.
+**27 automated tests passed** at the final verification run: two contrast checks, seventeen domain/migration/timeline tests and eight event-handler tests. JavaScript syntax checks also passed. The test output is reproducible using the supplied source package.
 
 ## Accessibility design and checks
 
@@ -74,3 +74,9 @@ The evaluation should first establish whether staff understand and can use the c
 Additional tests cover chronological order in both directions, filtering, visible undated events, explicit receipt, milestone evidence, date/score/duration validation, closed journey retrieval, version 1 migration with retained backup, plan updates versus treatment contacts, event edit timestamps, persisted event forms, view switching and handover chronology. Journey status is independently recorded; closing does not complete tasks. The six synthetic journeys include 20 treatment events, with planned assessment and ACTS follow-up clearly separate from completed activity.
 
 The full browser accessibility audit remains outstanding. No usability results or clinical effectiveness findings are claimed.
+
+## Live browser checks (12 October 2026)
+
+The GitHub Pages version was exercised in Chrome at a 1348px desktop viewport. A fictional ACTS referral was created, an assessment event saved and its outcome edited, then the page refreshed and the saved event reopened. The same event appeared in summary, detailed view and handover. Future-dated completion was rejected with a visible error. Closed filtering retrieved Casey and reconciled the filtered counts. Tab/Space switched timeline views; End navigated the workspace to Handover. Native event forms restored focus on close. A focus-restoration issue on the timeline view switch was found and corrected with a regression assertion; follow-up browser verification used the updated version.
+
+The live journey layout was visually reviewed. These focused workflow checks do not replace comprehensive keyboard traversal, assistive-technology testing, zoom/reflow, tablet devices or print/PDF pagination. Full WCAG 2.2 AA conformance remains unverified.

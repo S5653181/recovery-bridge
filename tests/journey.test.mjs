@@ -35,3 +35,9 @@ test('Closed journey filtering and handover retain declined support and actual c
  const text=summary(list[0],SEED.staff);assert.match(text,/ACTS journey status: Closed/);assert.match(text,/Journey closed/);assert.match(text,/Support intervention.*Declined/);assert.match(text,/ONWARD REFERRALS/);
  const planned=summary(SEED.referrals[0],SEED.staff);assert.match(planned,/14 Oct 2026 at 14:00.*Follow-up contact.*Planned/);
 });
+
+test('Record updates use London calendar dates and times consistently across midnight',()=>{
+ const r=structuredClone(SEED.referrals[0]);r.activityEvents.push({id:'late',title:'Plan saved',notes:'Synthetic update',owner:'priya',recordedAt:'2026-10-12T23:30:00Z'});
+ const update=timeline(r,{scope:'updates'})[0];assert.equal(update.date,'2026-10-13');assert.equal(update.time,'00:30');
+ assert.ok(SEED.referrals.flatMap(r=>r.events).every(e=>e.recordedAt.slice(0,10)<=SEED.today));
+});

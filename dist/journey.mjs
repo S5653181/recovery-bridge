@@ -25,9 +25,10 @@ export function validateACTSReferral(r,today){
  if(r.receivedTime&&!r.receivedDate)return 'Record the referral date before adding its time.';
  return '';
 }
+function londonDateTime(iso){const parts=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date(iso));const p=Object.fromEntries(parts.map(v=>[v.type,v.value]));return {date:p.year+'-'+p.month+'-'+p.day,time:p.hour+':'+p.minute};}
 export function timeline(r,{scope='',type='',status='',order='oldest'}={}){
  const receipt={id:'receipt',type:'Referral received',title:'Referral received by ACTS',date:r.receivedDate||'',time:r.receivedTime||'',status:r.receivedDate?'Completed':'Not recorded',owner:r.practitioner,notes:r.reasonForReferral||'',outcome:r.route||'',source:'Referral record'};
- const events=[receipt,...r.events.map(e=>({...e,source:'Treatment event'})),...(r.activityEvents||[]).map(e=>({...e,source:'Record update',type:'Record update',date:e.recordedAt.slice(0,10),time:e.recordedAt.slice(11,16),status:'Recorded'}))];
+ const events=[receipt,...r.events.map(e=>({...e,source:'Treatment event'})),...(r.activityEvents||[]).map(e=>({...e,source:'Record update',type:'Record update',...londonDateTime(e.recordedAt),status:'Recorded'}))];
  return events.filter(e=>(!scope||(scope==='treatment'?e.source!=='Record update':e.source==='Record update'))&&(!type||e.type===type)&&(!status||e.status===status)).sort((a,b)=>{
   if(!a.date||!b.date)return a.date?-1:b.date?1:a.id.localeCompare(b.id);
   const result=(a.date+'T'+(a.time||'00:00')).localeCompare(b.date+'T'+(b.time||'00:00'))||a.id.localeCompare(b.id);return order==='newest'?-result:result;

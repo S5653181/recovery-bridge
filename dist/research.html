@@ -928,7 +928,7 @@
 <td>Not a penetration test or production security assessment</td>
 </tr>
 </tbody></table></div>
-<p><strong>26 automated tests passed</strong> at the final verification run: two contrast checks, sixteen domain/migration/timeline tests and eight event-handler tests. JavaScript syntax checks also passed. The test output is reproducible using the supplied source package.</p>
+<p><strong>27 automated tests passed</strong> at the final verification run: two contrast checks, seventeen domain/migration/timeline tests and eight event-handler tests. JavaScript syntax checks also passed. The test output is reproducible using the supplied source package.</p>
 <h3>Accessibility design and checks</h3>
 <p>The target is WCAG 2.2 AA; this is not a conformance claim. The primary standard is <a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a>. The focus and target guidance were checked against the W3C explanations for <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html">Focus Not Obscured</a> and <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html">Target Size (Minimum)</a>.</p>
 <div class="table-wrap"><table>
@@ -1020,6 +1020,9 @@
 <h3>Version 2 journey verification</h3>
 <p>Additional tests cover chronological order in both directions, filtering, visible undated events, explicit receipt, milestone evidence, date/score/duration validation, closed journey retrieval, version 1 migration with retained backup, plan updates versus treatment contacts, event edit timestamps, persisted event forms, view switching and handover chronology. Journey status is independently recorded; closing does not complete tasks. The six synthetic journeys include 20 treatment events, with planned assessment and ACTS follow-up clearly separate from completed activity.</p>
 <p>The full browser accessibility audit remains outstanding. No usability results or clinical effectiveness findings are claimed.</p>
+<h3>Live browser checks (12 October 2026)</h3>
+<p>The GitHub Pages version was exercised in Chrome at a 1348px desktop viewport. A fictional ACTS referral was created, an assessment event saved and its outcome edited, then the page refreshed and the saved event reopened. The same event appeared in summary, detailed view and handover. Future-dated completion was rejected with a visible error. Closed filtering retrieved Casey and reconciled the filtered counts. Tab/Space switched timeline views; End navigated the workspace to Handover. Native event forms restored focus on close. A focus-restoration issue on the timeline view switch was found and corrected with a regression assertion; follow-up browser verification used the updated version.</p>
+<p>The live journey layout was visually reviewed. These focused workflow checks do not replace comprehensive keyboard traversal, assistive-technology testing, zoom/reflow, tablet devices or print/PDF pagination. Full WCAG 2.2 AA conformance remains unverified.</p>
 </section>
 <section id="section-7"><h2>GitHub repository and Pages hosting</h2>
 <p>This copy is prepared for a public repository named <code>recovery-bridge</code> and independent GitHub Pages hosting. It contains no hosting identity, credentials or dependency on the previous hosting provider. Links within the application and research pack are relative, so the application works under a project URL such as <code>https://&lt;your-account&gt;.github.io/recovery-bridge/</code>.</p>

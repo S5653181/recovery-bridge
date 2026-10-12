@@ -17,7 +17,7 @@ const taylor={...base('DEMO-006','Taylor','Bournemouth','Oak ward','morgan',''),
 taylor.followups[0].referralId='r5';
 export const LEGACY_SEED={schema:1,today:'2026-10-12',staff:STAFF,templates:TEMPLATES,episodes:[alex,sam,robin,jamie,casey,taylor],selectedStaff:'priya'};
 
-const clinical=(id,type,date,owner,notes='',status='Completed',time='10:00')=>({id,type,title:type,date,time,status,owner,method:'In person',location:'Fictional ward',duration:'',auditScore:'',notes,outcome:'',nextAction:'',recordedAt:date+'T12:00:00Z',updatedAt:date+'T12:00:00Z'});
+const clinical=(id,type,date,owner,notes='',status='Completed',time='10:00')=>({id,type,title:type,date,time,status,owner,method:'In person',location:'Fictional ward',duration:'',auditScore:'',notes,outcome:'',nextAction:'',recordedAt:(date>'2026-10-12'?'2026-10-12':date)+'T12:00:00Z',updatedAt:(date>'2026-10-12'?'2026-10-12':date)+'T12:00:00Z'});
 const dates=['2026-10-06','2026-10-11','2026-10-07','2026-10-08','2026-10-08','2026-10-09'];
 const journeys=[
  [clinical('e1','Initial assessment','2026-10-07','priya','Goals and support preferences explored.'),clinical('e2','Detox started','2026-10-08','priya','Treatment start recorded for this fictional scenario.'),clinical('e3','Detox ended','2026-10-10','priya','Treatment end recorded; clinical decisions remain with staff.'),clinical('e4','Recovery planning','2026-10-10','priya','Written recovery information and appointment discussed.'),clinical('e5','Discharged','2026-10-11','priya','Agreed handover shared in this fictional scenario.'),clinical('e6','Follow-up contact','2026-10-14','priya','ACTS telephone check-in planned.','Planned','14:00')],
