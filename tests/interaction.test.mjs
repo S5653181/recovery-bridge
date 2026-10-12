@@ -23,50 +23,57 @@ function harness(){const app=new Element('app'),dialog=new Element('editor'),fee
  globalThis.FormData=class{constructor(form){this.entries=Object.entries(form.values||{});}*[Symbol.iterator](){yield* this.entries}getAll(name){return this.entries.filter(([k])=>k===name).flatMap(([,v])=>Array.isArray(v)?v:[v]);}};
  const click=(act,data={})=>{const el=new Element('',{act,...data});el.focus();app.emit('click',{target:el});};
  const submit=values=>{dialog.form.values=values;dialog.form.emit('submit',{target:dialog.form,preventDefault(){}});};
- const saved=()=>JSON.parse(storage.get('recovery-bridge-v1'));
+ const saved=()=>JSON.parse(storage.get('recovery-bridge-v2'));
  return {app,dialog,find,click,submit,saved,storage,get printed(){return printed}};
 }
 test('UI event handlers create, edit, persist, update counts, validate and generate a handover',async()=>{
  const h=harness();await import('../dist/app.mjs?integration=1');
- assert.match(h.app.innerHTML,/Team overview/);assert.match(h.app.innerHTML,/<strong>11<\/strong>/);
- h.click('new-episode');h.submit({alias:'Fictional Jordan',site:'Poole',ward:'Demo ward',practitioner:'priya',discharge:'2026-10-15'});
- assert.equal(h.saved().episodes.length,7);const id=h.saved().episodes.at(-1).id;assert.equal(id,'DEMO-007');assert.match(h.app.innerHTML,/Fictional Jordan’s recovery plan/);
+ assert.match(h.app.innerHTML,/Referral register/);assert.match(h.app.innerHTML,/<strong>9<\/strong>/);
+ h.click('new-acts-referral');h.submit({journeyStatus:'Awaiting assessment',receivedDate:'2026-10-12',receivedTime:'',route:'Ward team',reasonForReferral:'Synthetic assessment request',alias:'Fictional Jordan',site:'Poole',ward:'Demo ward',practitioner:'priya',discharge:'2026-10-15'});
+ assert.equal(h.saved().referrals.length,7);const id=h.saved().referrals.at(-1).id;assert.equal(id,'ACTS-DEMO-007');assert.match(h.app.innerHTML,/Fictional Jordan’s ACTS journey/);
  h.click('goal');h.submit({text:'Reconnect with local support.'});
  h.click('recovery-context');h.submit({preferences:'Written instructions',resources:'Fictional contact card',review:'2026-10-13',barrierReview:'Reviewed'});
  h.click('support');h.submit({option:'Community support',discussed:'Completed',offered:'Completed',decision:'Accepted',arrangement:'Pending',notes:'Agreed with the person.'});
  h.click('barrier');h.submit({type:'Transport',context:'No transport arranged.',status:'Action agreed',action:'Explore travel options.'});
  h.click('tab',{tab:'actions'});h.click('action');h.submit({description:'Arrange travel',owner:'',due:'2026-10-11',status:'Pending',notes:'Synthetic task'});
- assert.equal(h.saved().episodes.at(-1).actions.length,1);let aid=h.saved().episodes.at(-1).actions[0].id;
+ assert.equal(h.saved().referrals.at(-1).actions.length,1);let aid=h.saved().referrals.at(-1).actions[0].id;
  h.click('action',{id:aid});h.submit({description:'Arrange travel',owner:'omar',due:'2026-10-14',status:'In progress',notes:'Owner allocated'});
- assert.equal(h.saved().episodes.at(-1).actions[0].owner,'omar');h.click('complete-action',{id:aid});assert.ok(h.saved().episodes.at(-1).actions[0].completedAt);assert.equal(document.activeElement.dataset.act,'reopen-action');h.click('reopen-action',{id:aid});assert.equal(h.saved().episodes.at(-1).actions[0].completedAt,null);assert.equal(document.activeElement.dataset.act,'complete-action');
- h.click('tab',{tab:'referrals'});h.click('referral');const r={service:'Harbour Recovery Service',purpose:'Fictional recovery support',consent:'Pending',date:'2026-10-12',owner:'priya',status:'Submitted',outcome:'',next:'Check response'};h.submit(r);assert.equal(h.dialog.open,true);assert.match(h.find('dialog-error').textContent,/consent/);r.consent='Agreed';h.submit(r);assert.equal(h.saved().episodes.at(-1).referrals[0].status,'Submitted');
- h.click('followup');const f={service:'Harbour Recovery Service',referralId:'',date:'2026-10-20',time:'14:00',method:'Telephone',owner:'',details:'Fictional worker will call.',status:'Confirmed',next:''};h.submit(f);assert.equal(h.dialog.open,true);f.owner='priya';h.submit(f);assert.equal(h.saved().episodes.at(-1).followups[0].status,'Confirmed');
+ assert.equal(h.saved().referrals.at(-1).actions[0].owner,'omar');h.click('complete-action',{id:aid});assert.ok(h.saved().referrals.at(-1).actions[0].completedAt);assert.equal(document.activeElement.dataset.act,'reopen-action');h.click('reopen-action',{id:aid});assert.equal(h.saved().referrals.at(-1).actions[0].completedAt,null);assert.equal(document.activeElement.dataset.act,'complete-action');
+ h.click('tab',{tab:'referrals'});h.click('referral');const r={service:'Harbour Recovery Service',purpose:'Fictional recovery support',consent:'Pending',date:'2026-10-12',owner:'priya',status:'Submitted',outcome:'',next:'Check response'};h.submit(r);assert.equal(h.dialog.open,true);assert.match(h.find('dialog-error').textContent,/consent/);r.consent='Agreed';h.submit(r);assert.equal(h.saved().referrals.at(-1).onwardReferrals[0].status,'Submitted');
+ h.click('followup');const f={service:'Harbour Recovery Service',onwardReferralId:'',date:'2026-10-20',time:'14:00',method:'Telephone',owner:'',details:'Fictional worker will call.',status:'Confirmed',next:''};h.submit(f);assert.equal(h.dialog.open,true);f.owner='priya';h.submit(f);assert.equal(h.saved().referrals.at(-1).followups[0].status,'Confirmed');
  h.click('tab',{tab:'handover'});assert.match(h.find('summary-content').value,/Reconnect with local support/);assert.match(h.find('summary-content').value,/Owner: Omar Blake/);assert.match(h.find('summary-content').value,/Harbour Recovery Service: Submitted/);assert.match(h.find('summary-content').value,/20 Oct 2026 at 14:00/);
- const text=h.find('summary-content').value+'\nReviewed as a fictional scenario.';h.find('summary-content').value=text;h.click('save-summary');assert.equal(h.saved().episodes.at(-1).handoverDraft,text);h.click('print-summary');assert.equal(h.printed,text);
- h.click('tab',{tab:'recovery'});h.click('goal',{id:h.saved().episodes.at(-1).goals[0].id});h.submit({text:'Updated fictional goal'});h.click('tab',{tab:'handover'});assert.match(h.app.innerHTML,/The record has changed/);assert.match(h.find('summary-content').value,/Updated fictional goal/);assert.ok(!h.find('summary-content').value.includes('Reviewed as a fictional scenario.'));
+ const text=h.find('summary-content').value+'\nReviewed as a fictional scenario.';h.find('summary-content').value=text;h.click('save-summary');assert.equal(h.saved().referrals.at(-1).handoverDraft,text);h.click('print-summary');assert.equal(h.printed,text);
+ h.click('tab',{tab:'recovery'});h.click('goal',{id:h.saved().referrals.at(-1).goals[0].id});h.submit({text:'Updated fictional goal'});h.click('tab',{tab:'handover'});assert.match(h.app.innerHTML,/The record has changed/);assert.match(h.find('summary-content').value,/Updated fictional goal/);assert.ok(!h.find('summary-content').value.includes('Reviewed as a fictional scenario.'));
  // A second module instance reads the same storage, simulating a refresh.
- await import('../dist/app.mjs?integration=2');assert.match(h.app.innerHTML,/Fictional Jordan/);assert.equal(h.saved().episodes.length,7);
+ await import('../dist/app.mjs?integration=2');assert.match(h.app.innerHTML,/Fictional Jordan/);assert.equal(h.saved().referrals.length,7);
 });
 test('Keyboard section handlers support Arrow, Home and End navigation',async()=>{
- const h=harness();await import('../dist/app.mjs?keyboard=1');h.click('open',{id:'DEMO-001'});
+ const h=harness();await import('../dist/app.mjs?keyboard=1');h.click('open',{id:'ACTS-DEMO-001'});
  const key=k=>h.app.emit('keydown',{target:new Element('',{tab:'recovery'}),key:k,preventDefault(){}});
- key('ArrowRight');assert.match(h.app.innerHTML,/id="tab-actions"[^>]*aria-selected="true"/);key('End');assert.match(h.app.innerHTML,/id="tab-handover"[^>]*aria-selected="true"/);key('Home');assert.match(h.app.innerHTML,/id="tab-recovery"[^>]*aria-selected="true"/);
+ key('ArrowRight');assert.match(h.app.innerHTML,/id="tab-recovery"[^>]*aria-selected="true"/);key('End');assert.match(h.app.innerHTML,/id="tab-handover"[^>]*aria-selected="true"/);key('Home');assert.match(h.app.innerHTML,/id="tab-journey"[^>]*aria-selected="true"/);
 });
 test('Reset restores the original dataset through the actual confirmation handler',async()=>{
- const h=harness();await import('../dist/app.mjs?reset=1');h.click('new-episode');h.submit({alias:'Reset test',site:'',ward:'',practitioner:'',discharge:''});h.click('nav',{page:'settings'});h.click('reset');h.submit({});assert.deepEqual(h.saved(),SEED);assert.match(h.app.innerHTML,/Team overview/);
+ const h=harness();await import('../dist/app.mjs?reset=1');h.click('new-acts-referral');h.submit({journeyStatus:'Awaiting assessment',receivedDate:'2026-10-12',receivedTime:'',route:'Ward team',reasonForReferral:'Synthetic assessment request',alias:'Reset test',site:'',ward:'',practitioner:'',discharge:''});h.click('nav',{page:'settings'});h.click('reset');h.submit({});assert.deepEqual(h.saved(),SEED);assert.match(h.app.innerHTML,/Referral register/);
 });
 test('Checklist selection creates only relevant actions, skips existing items and preserves rationale',async()=>{
- const h=harness();await import('../dist/app.mjs?checklist=1');h.click('open',{id:'DEMO-002'});h.click('tab',{tab:'actions'});h.click('checklist');h.submit({template:['goal','follow'],owner:'daniel',due:'2026-10-14'});
- const actions=h.saved().episodes[1].actions;assert.equal(actions.length,4);assert.equal(actions.at(-1).owner,'daniel');assert.equal(actions.at(-1).status,'Pending');assert.ok(actions.at(-1).why);h.click('checklist');assert.match(h.dialog.innerHTML,/already in plan/);assert.match(h.dialog.innerHTML,/disabled/);
+ const h=harness();await import('../dist/app.mjs?checklist=1');h.click('open',{id:'ACTS-DEMO-002'});h.click('tab',{tab:'actions'});h.click('checklist');h.submit({template:['goal','follow'],owner:'daniel',due:'2026-10-14'});
+ const actions=h.saved().referrals[1].actions;assert.equal(actions.length,4);assert.equal(actions.at(-1).owner,'daniel');assert.equal(actions.at(-1).status,'Pending');assert.ok(actions.at(-1).why);h.click('checklist');assert.match(h.dialog.innerHTML,/already in plan/);assert.match(h.dialog.innerHTML,/disabled/);
 });
 test('Filtering, metric selection and staff view use the same records as rendered counts',async()=>{
  const h=harness();await import('../dist/app.mjs?filters=1');const change=(id,value,data={})=>{const el=new Element(id,data);el.value=value;h.app.emit('change',{target:el});};
- change('filter-site','Poole',{filter:'site'});assert.match(h.app.innerHTML,/<strong>6<\/strong>/);assert.ok(!h.app.innerHTML.includes('data-id="DEMO-002"'));h.click('metric',{key:'unassigned'});assert.match(h.app.innerHTML,/<strong>3<\/strong>/);assert.ok(h.app.innerHTML.includes('data-id="DEMO-004"'));assert.ok(!h.app.innerHTML.includes('data-id="DEMO-001"'));
- h.click('clear-filters');change('demo-staff','ellis');assert.match(h.app.innerHTML,/Team lead view · work allocation/);h.click('my-episodes');assert.match(h.app.innerHTML,/No episodes match/);h.click('clear-filters');assert.match(h.app.innerHTML,/<strong>11<\/strong>/);
+ change('filter-site','Poole',{filter:'site'});assert.match(h.app.innerHTML,/<strong>5<\/strong>/);assert.ok(!h.app.innerHTML.includes('data-id="ACTS-DEMO-002"'));h.click('metric',{key:'unassigned'});assert.match(h.app.innerHTML,/<strong>3<\/strong>/);assert.ok(h.app.innerHTML.includes('data-id="ACTS-DEMO-004"'));assert.ok(!h.app.innerHTML.includes('data-id="ACTS-DEMO-001"'));
+ h.click('clear-filters');change('demo-staff','ellis');assert.match(h.app.innerHTML,/Team lead view · work allocation/);h.click('my-referrals');assert.match(h.app.innerHTML,/No referrals match/);h.click('clear-filters');assert.match(h.app.innerHTML,/<strong>9<\/strong>/);
 });
 test('Storage failure keeps saved records unchanged and leaves the form open',async()=>{
- const h=harness();await import('../dist/app.mjs?failure=1');h.click('open',{id:'DEMO-002'});h.click('goal');h.submit({text:'First fictional goal'});const before=structuredClone(h.saved());globalThis.localStorage.setItem=()=>{throw Error('Quota exceeded')};h.click('goal');h.submit({text:'This must not be saved'});assert.equal(h.dialog.open,true);assert.deepEqual(h.saved(),before);assert.match(h.find('dialog-error').textContent,/could not be saved/);
+ const h=harness();await import('../dist/app.mjs?failure=1');h.click('open',{id:'ACTS-DEMO-002'});h.click('goal');h.submit({text:'First fictional goal'});const before=structuredClone(h.saved());globalThis.localStorage.setItem=()=>{throw Error('Quota exceeded')};h.click('goal');h.submit({text:'This must not be saved'});assert.equal(h.dialog.open,true);assert.deepEqual(h.saved(),before);assert.match(h.find('dialog-error').textContent,/could not be saved/);
 });
 test('Untrusted fictional text is escaped rather than interpreted as HTML',async()=>{
- const h=harness();await import('../dist/app.mjs?escaping=1');h.click('new-episode');h.submit({alias:'<img src=x onerror=alert(1)>',site:'',ward:'',practitioner:'',discharge:''});assert.ok(h.app.innerHTML.includes('&lt;img src=x onerror=alert(1)&gt;'));assert.ok(!h.app.innerHTML.includes('<img src=x'));
+ const h=harness();await import('../dist/app.mjs?escaping=1');h.click('new-acts-referral');h.submit({journeyStatus:'Awaiting assessment',receivedDate:'2026-10-12',receivedTime:'',route:'Ward team',reasonForReferral:'Synthetic assessment request',alias:'<img src=x onerror=alert(1)>',site:'',ward:'',practitioner:'',discharge:''});assert.ok(h.app.innerHTML.includes('&lt;img src=x onerror=alert(1)&gt;'));assert.ok(!h.app.innerHTML.includes('<img src=x'));
+});
+test('Treatment event handler validates dates, saves edits, switches timeline detail and survives refresh',async()=>{
+ const h=harness();await import('../dist/app.mjs?journey=1');h.click('open',{id:'ACTS-DEMO-002'});assert.match(h.app.innerHTML,/Treatment journey timeline/);
+ h.click('event');const data={type:'Initial assessment',title:'Fictional assessment completed',date:'2026-10-13',time:'11:00',status:'Completed',owner:'daniel',method:'In person',location:'Cedar ward',duration:'25',auditScore:'0',notes:'Discussed individual priorities.',outcome:'Agreed a review.',nextAction:'Review tomorrow'};
+ h.submit(data);assert.equal(h.dialog.open,true);assert.match(h.find('dialog-error').textContent,/Planned/);data.date='2026-10-12';h.submit(data);assert.equal(h.saved().referrals[1].events.length,3);const e=h.saved().referrals[1].events.at(-1);assert.ok(e.recordedAt);h.click('timeline-view',{view:'detailed'});assert.match(h.app.innerHTML,/Contact duration/);assert.match(h.app.innerHTML,/25 minutes/);assert.match(h.app.innerHTML,/AUDIT score \(recorded\)/);
+ h.click('event',{id:e.id});data.outcome='Updated fictional outcome';h.submit(data);assert.equal(h.saved().referrals[1].events.at(-1).recordedAt,e.recordedAt);assert.equal(h.saved().referrals[1].events.at(-1).outcome,data.outcome);
+ h.click('tab',{tab:'handover'});assert.match(h.find('summary-content').value,/Updated fictional outcome/);await import('../dist/app.mjs?journey=2');h.click('open',{id:'ACTS-DEMO-002'});assert.match(h.app.innerHTML,/Fictional assessment completed/);
 });

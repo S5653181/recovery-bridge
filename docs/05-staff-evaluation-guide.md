@@ -1,6 +1,6 @@
 # Recovery Bridge: staff evaluation guide
 
-Research prototype · Fictional scenarios only · Version 1.0
+Research prototype · Fictional scenarios only · Version 2.0
 
 ## Aim and boundaries
 
@@ -26,13 +26,13 @@ Use task wording, not click instructions. Offer neutral encouragement; record an
 
 | Task given to the participant | Expected outcome / observer check | Important error to record |
 | --- | --- | --- |
-| 1. Find the Poole episode planned for discharge on the demo date whose community referral has not been answered. Explain what still needs checking. | Identifies Robin, DEMO-003; submitted referral, unresolved response and pending follow-up identified. | Treats submission as successful engagement or confirmed follow-up. |
-| 2. Open Sam's plan. Record the fictional goal “Build a daily routine”, a preference for written information, and a review for 13 Oct 2026. Allocate the unassigned goal discussion to Daniel and mark it completed. | Goal/preferences/review saved; owner Daniel; one completed action with timestamp; Sam's outstanding count falls from 2 to 1. | Missing information interpreted as already completed; wrong episode or owner. |
+| 1. Find the Poole ACTS referral planned for discharge on the demo date whose community referral has not been answered. Explain what still needs checking. | Identifies Robin, ACTS-DEMO-003; submitted referral, unresolved response and pending follow-up identified. | Treats submission as successful engagement or confirmed follow-up. |
+| 2. Open Sam's plan. Record the fictional goal “Build a daily routine”, a preference for written information, and a review for 13 Oct 2026. Allocate the unassigned goal discussion to Daniel and mark it completed. | Goal/preferences/review saved; owner Daniel; one completed action with timestamp; Sam's outstanding count falls from 2 to 1. | Missing information interpreted as already completed; wrong ACTS referral or owner. |
 | 3. For Jamie, review the housing, transport and communication barriers. Assign the alternative contact-route action to Omar and record that the team will agree a written contact route. | Action owner and notes saved; barriers remain visible until actually resolved. | Marks housing resolved just because a referral was submitted. |
 | 4. For Robin, the fictional service has now accepted the referral. Record the response, then arrange a confirmed telephone call on 16 Oct 2026 at 14:00, owned by Morgan; the named fictional worker will call using the agreed contact route. | Referral Accepted; follow-up separately Confirmed with date/time/method/details/owner; awaiting response falls by 1 and follow-up-to-confirm falls by 1. | Changes one status and assumes the other automatically updated. |
 | 5. Review Casey's declined group support. Prepare a handover without converting declined support into completed or accepted support. | Declined decision and written information preference preserved; no invented group appointment. | Overrides the person's recorded choice or conflates Declined with Completed. |
-| 6. Create a fictional episode for Jordan at Poole, Demo ward, assigned to Priya, planned discharge 18 Oct 2026. Select only the recovery-goals and follow-up items from the example checklist. | New record saved; two relevant Pending actions with reviewed owner/date; remaining sections explicitly missing. | Copies all irrelevant checklist items or invents referral details. |
-| 7. Open Alex's handover. Check the outstanding action and confirmed appointment; edit the preview to add “Reviewed in fictional team discussion”. Save, refresh the page, reopen Alex and export the handover as text. | Draft persists unchanged across refresh; remaining action and 16 Oct 14:00 appointment still accurate; exported text matches preview. | Loses edits, exports stale information, or assumes the plan proves clinical readiness. |
+| 6. Create a fictional ACTS referral for Jordan received on 12 Oct 2026 from the Ward team at Poole, Demo ward, assigned to Priya, planned discharge 18 Oct 2026. Select only the recovery-goals and follow-up items from the example checklist. | New record saved; two relevant Pending actions with reviewed owner/date; remaining sections explicitly missing. | Copies all irrelevant checklist items or invents referral details. |
+| 7. Open Alex's handover. Check the dated discharge event, planned ACTS follow-up and confirmed community appointment; edit the preview to add “Reviewed in fictional team discussion”. Save, refresh the page, reopen Alex and export the handover as text. | Draft persists unchanged across refresh; planned ACTS contact and 16 Oct 14:00 appointment still accurate; exported text matches preview. | Loses edits, exports stale information, or assumes the plan proves clinical readiness. |
 | 8. Using the keyboard only, open Taylor, review the proposed follow-up and navigate to the handover. Explain why the follow-up is still pending. | Core controls reachable; tab navigation and dialog behaviour usable; proposed date not interpreted as confirmed. | Cannot reach a control, loses focus, or calls the proposed appointment confirmed. |
 
 Tasks 2–7 change records. Use the expected deltas within a task, not the untouched baseline totals. Reset before another participant; record the start state if task order is changed. Do not request Reset until the observer has retained any agreed synthetic evidence.
@@ -47,7 +47,7 @@ Record participant code, role category, task, start/end time, outcome, errors, a
 | Completion rate | Independent successes ÷ tasks attempted; show numerator and denominator. Report assisted successes separately. |
 | Time on task | Seconds from reading the task to the participant declaring completion or stopping; keep assisted and failed-task times labelled separately. |
 | Data accuracy | Expected fields correctly saved ÷ expected fields checked; retain the field-level checklist so the denominator is reproducible. |
-| Significant errors | Wrong episode, false confirmation, lost saved data, invented information, overriding declined support, or interpreting checklist completion as clinical clearance |
+| Significant errors | Wrong ACTS referral, false confirmation, lost saved data, invented information, overriding declined support, or interpreting checklist completion as clinical clearance |
 | Recoverable errors | Navigation mistakes, validation corrections, wrong initial filter or corrected owner/date |
 | Assistance | Number and nature of prompts; record a neutral hint separately from direct click guidance |
 | Interpretation | Can the participant explain Not recorded, Pending, Declined, Not applicable, submission, acceptance and confirmed follow-up? |
@@ -108,3 +108,17 @@ Prioritise revisions: first misleading statuses, wrong-record risks or data loss
 3. Weiner, B. J. et al. (2017). *Psychometric assessment of three newly developed implementation outcome measures*. Implementation Science, 12, 108. [Open-access article and supplementary instrument](https://link.springer.com/article/10.1186/s13012-017-0635-3).
 
 Sources checked 12 October 2026. Exact instrument administration remains subject to the checks above.
+
+## Additional referral journey tasks
+
+| Scenario task | Expected evidence | Errors / observations |
+| --- | --- | --- |
+| In Sam's referral, identify why the initial contact did not happen and when assessment is planned. Record a fictional completed initial assessment on 12 Oct 2026 at 15:00 with Daniel, including an outcome and next action. | Distinguishes Not completed contact from Planned assessment; new dated event saved; assessment-to-record count reduces by one; journey status remains independently editable. | Treats a planned assessment as completed; records an impossible future completion; wrong journey. |
+| Use Alex's summary timeline to explain the ACTS journey; switch to detailed view to inspect the recorded recovery planning. | Receipt, assessment, treatment start/end, discharge and planned ACTS follow-up reconstructed accurately. | Mistakes save timestamp for occurrence date or discharge for ACTS closure. |
+| Find Casey's earlier journey and explain the support decision without changing it. | Retrieves Closed via filter; recognises declined support and separate discharge/closure events. | Assumes closed records were deleted; equates Declined with Completed. |
+| Update Robin's onward referral response, then find that change in the timeline. | Record update appears with save time, independently of clinical contacts; no automatic successful engagement claim. | Interprets the update timestamp as when the service clinically accepted the referral. |
+| Reopen a saved fictional referral after refreshing; verify a new event in both timeline views and handover. | Same stored date, status, owner, context and outcome preserved and shown. | Lost edits, missing chronology or inconsistent summary/detail. |
+
+For journey tasks measure chronological interpretation accuracy, correct separation of ACTS/onward referrals, event date versus save time, planned versus completed, task time, assistance and errors. Interview: “Does one referral represent the way ACTS follows a person's journey?”, “Which events are missing?”, “When would you use summary or detail?”, “What would you expect to happen when someone is discharged or re-referred?”
+
+Use these alongside the SUS, TAM and AIM/IAM/FIM plan above; verify original instrument wording and use requirements before administration. No instrument results or staff findings are fabricated.

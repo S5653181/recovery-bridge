@@ -1,6 +1,6 @@
 # Verification, accessibility and limitations
 
-Prototype v1.0 · Checks performed 12 October 2026
+Prototype v2.0 · Checks performed 12 October 2026
 
 ## What was verified
 
@@ -20,7 +20,7 @@ The automated checks use Node.js with its built-in test runner. Domain tests exe
 | Persistence failures are visible | Failed writes preserve previous state and keep the form open | Browser-specific quota and disabled-storage cases need real-browser checks |
 | Untrusted text is escaped | A fictional HTML-like scenario label renders as text | Not a penetration test or production security assessment |
 
-**18 automated tests passed** at the final verification run: two contrast checks, nine domain tests and seven event-handler tests. JavaScript syntax checks also passed. The test output is reproducible using the supplied source package.
+**26 automated tests passed** at the final verification run: two contrast checks, sixteen domain/migration/timeline tests and eight event-handler tests. JavaScript syntax checks also passed. The test output is reproducible using the supplied source package.
 
 ## Accessibility design and checks
 
@@ -41,7 +41,7 @@ The target is WCAG 2.2 AA; this is not a conformance claim. The primary standard
 
 Selected text-palette contrast ratios against their designed backgrounds are **5.72:1 or higher**, exceeding the normal-text AA threshold of 4.5:1. The input boundary and selected focus-ring pairs exceed 3:1. These are computed colour checks, not an audit of every rendered state. Input borders and the sidebar focus colour were adjusted after the initial check.
 
-Browser automation and visual preview were unavailable in the execution environment. No browser-based keyboard, screen-reader, zoom, screenshot or print-layout checks are claimed. Complete those checks before formal staff evaluation, using the scenario tasks and a documented browser/device matrix.
+The automated document harness does not establish browser accessibility. Live-browser checks for the version 2 workflow are recorded below; comprehensive screen-reader, zoom, device and print-pagination checks remain required before formal staff evaluation.
 
 ## Assumptions
 
@@ -56,15 +56,21 @@ Browser automation and visual preview were unavailable in the execution environm
 
 ## Remaining limitations
 
-1. Browser-local storage has no shared database, robust audit trail, conflict resolution, encryption layer, production backup or migration tooling. Multiple tabs can overwrite each other's changes; use one tab.
+1. Browser-local storage has no shared database, robust audit trail, conflict resolution, encryption layer, production backup ; version 1 plan migration is implemented. Multiple tabs can overwrite each other's changes; use one tab.
 2. Demonstration staff switching provides no authentication, permissions, verified identity or attribution of who performed an edit. Completion timestamps identify time, not authenticated authorship.
 3. The directory is fictional. There are no external calls, service eligibility checks, live referrals or real appointment verification.
 4. Summary generation is deterministic and uses recorded data. Editable drafts can diverge intentionally; they require staff review. Source changes replace the active preview with current generated content rather than merging previous edits.
 5. Blank sections are unknown, not negative findings. Attention counts concern existing entries; they do not quantify every possible planning gap.
 6. Confirmed follow-up is a staff-recorded status and does not demonstrate attendance, engagement or an outcome. Accepted referrals do not demonstrate successful recovery support.
-7. The schema is focused on current coordination. There is no episode deletion/archive workflow, attachment store, automatic research telemetry, imported EPR data or comprehensive historical audit.
+7. The schema follows one ACTS referral journey, including clinical events and recorded plan updates. Closed journeys remain available. There is no cross-referral patient index, deletion workflow, attachment store, automatic research telemetry, imported EPR data or immutable historical audit.
 8. Browser compatibility, native keyboard/modal behaviour, assistive technology, responsive layout and print pagination require real-browser verification.
 9. Questionnaire wording and use conditions need final checking; no participant evaluation, usability findings or clinical effectiveness evidence exists.
 10. A production version would require a separate clinical, technical and organisational design process, including approved identity, secure storage, information governance, clinical safety review and workflow integration. These are future implementation needs, not claimed features of this research prototype.
 
 The evaluation should first establish whether staff understand and can use the coordination workflow. Wider adoption or clinical impact cannot be inferred from this build.
+
+## Version 2 journey verification
+
+Additional tests cover chronological order in both directions, filtering, visible undated events, explicit receipt, milestone evidence, date/score/duration validation, closed journey retrieval, version 1 migration with retained backup, plan updates versus treatment contacts, event edit timestamps, persisted event forms, view switching and handover chronology. Journey status is independently recorded; closing does not complete tasks. The six synthetic journeys include 20 treatment events, with planned assessment and ACTS follow-up clearly separate from completed activity.
+
+The full browser accessibility audit remains outstanding. No usability results or clinical effectiveness findings are claimed.

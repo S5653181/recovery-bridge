@@ -8,7 +8,7 @@ COM-B considers capability, opportunity and motivation in relation to behaviour.
 
 | Implemented feature | Intended staff behaviour | PSD interpretation | COM-B hypothesis | Evaluation question |
 | --- | --- | --- | --- | --- |
-| One episode workspace with four sections | Find context and update the plan without repeated navigation | Reduction; tunnelling through a recognisable workflow | Psychological capability: reduce memory demand; physical opportunity: convenient access | Where did you have to search or duplicate work? |
+| One ACTS referral workspace with four sections | Find context and update the plan without repeated navigation | Reduction; tunnelling through a recognisable workflow | Psychological capability: reduce memory demand; physical opportunity: convenient access | Where did you have to search or duplicate work? |
 | Next useful step card | Review ownership gaps, overdue work, referral responses or confirmation details | Suggestion; contextual reminder | Psychological capability and reflective motivation: clarify the next action and its purpose | Was the prompt relevant, understandable and proportionate? |
 | Relevant checklist selection and reusable items | Create a consistent action plan while excluding irrelevant items | Reduction; tailoring | Capability: recall planning domains; opportunity: reduce entry effort | Did useful defaults save effort or encourage inappropriate copying? |
 | Visible owner and due date; Unassigned state | Allocate responsibility and coordinate with colleagues | Reduction of ambiguity; social support interpretation, without comparison or pressure | Social opportunity: agree responsibility and communication | Could you tell who would take the next step? |
@@ -35,3 +35,16 @@ The team-lead workload view supports allocation, not performance ranking. Role v
 2. Michie, S., van Stralen, M. M. & West, R. (2011). *The behaviour change wheel: a new method for characterising and designing behaviour change interventions*. Implementation Science, 6, 42. [Open-access article](https://pmc.ncbi.nlm.nih.gov/articles/PMC3096582/).
 
 Sources checked 12 October 2026. The feature mapping is the prototype designer's interpretation and should be refined with staff findings.
+
+## ACTS referral journey design
+
+| Feature | Intended staff behaviour | COM-B | Persuasive Systems Design | Evaluation question |
+| --- | --- | --- | --- | --- |
+| Referral-centred default workspace | Review the ongoing ACTS journey, including post-discharge contact | Psychological capability; physical opportunity | Reduction; tunnelling | Can staff distinguish ACTS referral, admission/discharge and onward referral? |
+| Summary/detail timeline with shared data | Orient quickly, then inspect event context when needed | Psychological capability | Reduction; tailoring | Can staff reconstruct what happened and what is still planned without losing context? |
+| Named event responsibility and next action | Identify who should act next | Social opportunity | Cooperation; social facilitation | Is ownership clear, including unassigned events? |
+| Evidence-based milestone labels | Distinguish recorded activity from planned or missing history | Psychological capability; reflective motivation | Self-monitoring; feedback | Do staff understand that milestones are documentation, not clinical clearance? |
+| Date validation and missing-history prompts | Record events accurately rather than infer them | Psychological capability | Reminders; error prevention within reduction | Can staff correct dates without unnecessary interruption? |
+| Visible record updates with separate save times | Understand changes to coordination plans without mistaking them for clinical contacts | Psychological capability; social opportunity | Transparency; feedback | Can staff tell the event date from the recording time? |
+
+These mappings are hypotheses for evaluation, not evidence of behaviour change or recovery benefit. No gamification or clinical effectiveness claim is added.

@@ -1,8 +1,8 @@
-<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Recovery Bridge research prototype: research & implementation pack."><title>Recovery Bridge · Research & implementation pack</title><style>:root{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#243e39;background:#f3f5ef;font-synthesis:none}*{box-sizing:border-box}body{margin:0;font-size:15px;line-height:1.75}a{color:#17665a;text-underline-offset:3px}a:focus-visible,button:focus-visible{outline:3px solid #a45e1a;outline-offset:4px}h1,h2,h3,h4{line-height:1.3;letter-spacing:-.6px;color:#173b38}h1{font-size:42px;margin:15px 0 20px}h2{font-size:29px;margin:0 0 23px}h3{font-size:22px;margin:35px 0 16px}h4{font-size:18px;margin:24px 0 12px}p{margin:0 0 17px}li{margin:7px 0}ul,ol{padding-left:24px}header{background:#173b38;color:#eef5e9;padding:47px max(28px,calc((100vw - 1240px)/2)) 42px}header h1{color:#fff;max-width:860px}header p{color:#d9e6d8;max-width:850px}header a{color:#e9f5df}.kicker{font-size:11px;text-transform:uppercase;letter-spacing:2px;font-weight:700}.tag{display:inline-block;background:#cce2c8;color:#173b38;padding:5px 10px;border-radius:5px;font-size:11px;font-weight:700;margin-right:8px}.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:38px;max-width:1240px;padding:34px 28px 60px;margin:auto}nav{position:sticky;top:25px;height:max-content;font-size:13px}nav strong{display:block;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin:5px 0 14px}nav a{display:block;padding:10px 12px;border-left:2px solid #cad6c7;text-decoration:none;color:#435e50}nav a:hover{background:#e5eddc;border-color:#50744b}article{min-width:0}section{background:#fff;border:1px solid #d0d9ca;border-radius:10px;padding:34px 38px;margin-bottom:28px;scroll-margin-top:20px}section>p:first-of-type{font-size:13px;color:#566954}table{border-collapse:collapse;width:100%;font-size:12px;line-height:1.6;margin:19px 0 25px}th,td{text-align:left;vertical-align:top;padding:12px 13px;border:1px solid #c7d2bf;overflow-wrap:anywhere}th{background:#ecf1e5;color:#294d3d;font-weight:700}tr:nth-child(even) td{background:#fafbf7}.table-wrap{overflow-x:auto}pre{background:#173b38;color:#eef5e9;border-radius:6px;padding:16px 20px;overflow-x:auto;font-size:13px;line-height:1.65}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.9em}p code,li code,td code{background:#edf2e7;padding:2px 4px;overflow-wrap:anywhere}.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:22px}.controls a,.controls button{border:1px solid #b2ccb3;border-radius:5px;padding:9px 14px;font:inherit;font-size:12px;cursor:pointer;text-decoration:none;color:#edf5e9;background:transparent}footer{max-width:1240px;padding:0 28px 40px;margin:auto;font-size:12px;color:#566954}.skip{position:absolute;top:-100px;padding:10px;background:#fff;z-index:2}.skip:focus{top:10px}.single .layout{display:block;max-width:1100px}.single section{padding:35px 45px}@media(max-width:900px){.layout{grid-template-columns:1fr;gap:20px}nav{position:static}nav a{display:inline-block}section{padding:24px}.single section{padding:24px}h1{font-size:32px}h2{font-size:25px}}@media print{body{background:#fff;font-size:10pt;line-height:1.6}header{background:none;color:#173b38;padding:0;margin-bottom:20px}header h1{color:#173b38;font-size:24pt}header p{color:#334e42}.controls,nav,.skip{display:none!important}.layout{display:block;padding:0}section,.single section{padding:0;border:0;border-radius:0;break-before:page;margin:0}h2{font-size:19pt}h3{font-size:14pt;break-after:avoid}table{font-size:8pt}th,td{padding:7px;break-inside:avoid}pre{background:#eee;color:#111;white-space:pre-wrap}a{color:#174a3e}footer{padding:20px 0 0}@page{size:A4;margin:18mm}}</style></head><body class=""><a class="skip" href="#main">Skip to content</a><header><div class="kicker">RECOVERY BRIDGE · PROTOTYPE v1.0</div><h1>Research & implementation pack</h1><p>Design and Development of a Staff-Facing Digital Tool to Support Alcohol Recovery and Discharge Planning in Inpatient Alcohol Care.</p><span class="tag">Synthetic scenarios only</span><span class="tag">Staff research prototype</span><div class="controls"><a href="./">Open the application</a><button type="button" onclick="window.print()">Print / save as PDF</button><a href="downloads/recovery-bridge-source.zip">Download source & documentation</a><a href="evaluation.html">Separate evaluation guide</a></div></header><div class="layout"><nav aria-label="Document sections"><strong>In this pack</strong><a href="#section-1">Setup & run</a><a href="#section-2">User guide</a><a href="#section-3">Feature mapping & data model</a><a href="#section-4">Behavioural design rationale</a><a href="#section-5">Staff evaluation guide</a><a href="#section-6">Verification & limitations</a><a href="#section-7">GitHub Pages migration</a></nav><article id="main"><section id="section-1"><h2>Recovery Bridge: setup and run</h2>
-<p>Version 1.0 · 12 October 2026 · Research prototype · Synthetic data only</p>
+<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Recovery Bridge research prototype: research & implementation pack."><title>Recovery Bridge · Research & implementation pack</title><style>:root{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#243e39;background:#f3f5ef;font-synthesis:none}*{box-sizing:border-box}body{margin:0;font-size:15px;line-height:1.75}a{color:#17665a;text-underline-offset:3px}a:focus-visible,button:focus-visible{outline:3px solid #a45e1a;outline-offset:4px}h1,h2,h3,h4{line-height:1.3;letter-spacing:-.6px;color:#173b38}h1{font-size:42px;margin:15px 0 20px}h2{font-size:29px;margin:0 0 23px}h3{font-size:22px;margin:35px 0 16px}h4{font-size:18px;margin:24px 0 12px}p{margin:0 0 17px}li{margin:7px 0}ul,ol{padding-left:24px}header{background:#173b38;color:#eef5e9;padding:47px max(28px,calc((100vw - 1240px)/2)) 42px}header h1{color:#fff;max-width:860px}header p{color:#d9e6d8;max-width:850px}header a{color:#e9f5df}.kicker{font-size:11px;text-transform:uppercase;letter-spacing:2px;font-weight:700}.tag{display:inline-block;background:#cce2c8;color:#173b38;padding:5px 10px;border-radius:5px;font-size:11px;font-weight:700;margin-right:8px}.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:38px;max-width:1240px;padding:34px 28px 60px;margin:auto}nav{position:sticky;top:25px;height:max-content;font-size:13px}nav strong{display:block;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin:5px 0 14px}nav a{display:block;padding:10px 12px;border-left:2px solid #cad6c7;text-decoration:none;color:#435e50}nav a:hover{background:#e5eddc;border-color:#50744b}article{min-width:0}section{background:#fff;border:1px solid #d0d9ca;border-radius:10px;padding:34px 38px;margin-bottom:28px;scroll-margin-top:20px}section>p:first-of-type{font-size:13px;color:#566954}table{border-collapse:collapse;width:100%;font-size:12px;line-height:1.6;margin:19px 0 25px}th,td{text-align:left;vertical-align:top;padding:12px 13px;border:1px solid #c7d2bf;overflow-wrap:anywhere}th{background:#ecf1e5;color:#294d3d;font-weight:700}tr:nth-child(even) td{background:#fafbf7}.table-wrap{overflow-x:auto}pre{background:#173b38;color:#eef5e9;border-radius:6px;padding:16px 20px;overflow-x:auto;font-size:13px;line-height:1.65}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.9em}p code,li code,td code{background:#edf2e7;padding:2px 4px;overflow-wrap:anywhere}.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:22px}.controls a,.controls button{border:1px solid #b2ccb3;border-radius:5px;padding:9px 14px;font:inherit;font-size:12px;cursor:pointer;text-decoration:none;color:#edf5e9;background:transparent}footer{max-width:1240px;padding:0 28px 40px;margin:auto;font-size:12px;color:#566954}.skip{position:absolute;top:-100px;padding:10px;background:#fff;z-index:2}.skip:focus{top:10px}.single .layout{display:block;max-width:1100px}.single section{padding:35px 45px}@media(max-width:900px){.layout{grid-template-columns:1fr;gap:20px}nav{position:static}nav a{display:inline-block}section{padding:24px}.single section{padding:24px}h1{font-size:32px}h2{font-size:25px}}@media print{body{background:#fff;font-size:10pt;line-height:1.6}header{background:none;color:#173b38;padding:0;margin-bottom:20px}header h1{color:#173b38;font-size:24pt}header p{color:#334e42}.controls,nav,.skip{display:none!important}.layout{display:block;padding:0}section,.single section{padding:0;border:0;border-radius:0;break-before:page;margin:0}h2{font-size:19pt}h3{font-size:14pt;break-after:avoid}table{font-size:8pt}th,td{padding:7px;break-inside:avoid}pre{background:#eee;color:#111;white-space:pre-wrap}a{color:#174a3e}footer{padding:20px 0 0}@page{size:A4;margin:18mm}}</style></head><body class=""><a class="skip" href="#main">Skip to content</a><header><div class="kicker">RECOVERY BRIDGE · PROTOTYPE v2.0</div><h1>Research & implementation pack</h1><p>Design and Development of a Staff-Facing Digital Tool to Support Alcohol Recovery and Discharge Planning in Inpatient Alcohol Care.</p><span class="tag">Synthetic scenarios only</span><span class="tag">Staff research prototype</span><div class="controls"><a href="./">Open the application</a><button type="button" onclick="window.print()">Print / save as PDF</button><a href="downloads/recovery-bridge-source.zip">Download source & documentation</a><a href="evaluation.html">Separate evaluation guide</a></div></header><div class="layout"><nav aria-label="Document sections"><strong>In this pack</strong><a href="#section-1">Setup & run</a><a href="#section-2">User guide</a><a href="#section-3">Feature mapping & data model</a><a href="#section-4">Behavioural design rationale</a><a href="#section-5">Staff evaluation guide</a><a href="#section-6">Verification & limitations</a><a href="#section-7">GitHub Pages migration</a></nav><article id="main"><section id="section-1"><h2>Recovery Bridge: setup and run</h2>
+<p>Version 2.0 · 12 October 2026 · Research prototype · Synthetic data only</p>
 <p>Recovery Bridge supports recovery planning and discharge coordination for inpatient alcohol care staff. It does not make clinical decisions or connect to clinical systems.</p>
 <h3>Open the GitHub Pages prototype</h3>
-<p>Use the supplied GitHub Pages application link. The published demonstration site is public. A normal modern desktop or tablet browser is sufficient. The first visit loads six fictional episodes; no sign-up or patient details are required inside the prototype. No ChatGPT sign-in is required. The demonstration staff selector is a viewpoint control, not authentication.</p>
+<p>Use the supplied GitHub Pages application link. The published demonstration site is public. A normal modern desktop or tablet browser is sufficient. The first visit loads six fictional ACTS referrals; no sign-up or patient details are required inside the prototype. No ChatGPT sign-in is required. The demonstration staff selector is a viewpoint control, not authentication.</p>
 <h3>Run a local copy</h3>
 <p>Download <strong>Source &amp; documentation</strong> from Guide &amp; research, then extract the ZIP into a new folder. The archive includes <code>dist/</code>, <code>docs/</code>, <code>tests/</code>, <code>package.json</code>, <code>README.md</code> and this guide. It excludes hosting identity, credentials and Git internals.</p>
 <p>With Python 3 installed, run this from the extracted folder:</p>
@@ -39,6 +39,10 @@
 <td>Filters, counts, status rules, validators, storage and handover generation</td>
 </tr>
 <tr>
+<td><code>dist/journey.mjs</code></td>
+<td>Treatment timeline, milestones, event validation and recorded plan updates</td>
+</tr>
+<tr>
 <td><code>dist/app.mjs</code></td>
 <td>Rendering, forms, navigation and interaction handlers</td>
 </tr>
@@ -52,8 +56,8 @@
 </tr>
 </tbody></table></div>
 <h3>Persistence and reset</h3>
-<p>Saved forms write a versioned JSON object to the browser&#39;s local storage, under <code>recovery-bridge-v1</code>. Changes survive refreshes on that browser and origin. Unsaved form edits are discarded on Cancel; handover preview edits require Save edited draft. A successful save message follows a completed storage write. A failed write leaves the previous saved state unchanged.</p>
-<p>Demo settings can export the current synthetic dataset as JSON. The JSON export is a backup for inspection, not an implemented import workflow. Reset demonstration data restores the original six episodes, checklist, staff viewpoint and fixed reference date. Reset requires an explicit in-app confirmation because it discards local edits.</p>
+<p>Saved forms write a versioned JSON object to the browser&#39;s local storage, under <code>recovery-bridge-v2</code>. Changes survive refreshes on that browser and origin. Unsaved form edits are discarded on Cancel; handover preview edits require Save edited draft. A successful save message follows a completed storage write. A failed write leaves the previous saved state unchanged.</p>
+<p>Demo settings can export the current synthetic dataset as JSON. The JSON export is a backup for inspection, not an implemented import workflow. Reset demonstration data restores the original six ACTS referrals, checklist, staff viewpoint and fixed reference date. Reset requires an explicit in-app confirmation because it discards local edits.</p>
 <p>If saved data is unreadable, the prototype displays a warning and blocks new saves until reset; it does not silently replace the unreadable data.</p>
 <p>The reference date is initially <strong>12 October 2026</strong>. Overdue means due before that date, rather than before the computer&#39;s current date. Change it in Demo settings if needed. Completion timestamps use the computer&#39;s actual clock and display Europe/London time.</p>
 <h3>Troubleshooting</h3>
@@ -66,7 +70,7 @@
 </thead>
 <tbody><tr>
 <td>Blank local page</td>
-<td>Serve <code>dist/</code> over HTTP; ensure all three <code>.mjs</code> files and <code>styles.css</code> were extracted.</td>
+<td>Serve <code>dist/</code> over HTTP; ensure all four <code>.mjs</code> files and <code>styles.css</code> were extracted.</td>
 </tr>
 <tr>
 <td>Changes do not persist</td>
@@ -74,7 +78,7 @@
 </tr>
 <tr>
 <td>No rows after filtering</td>
-<td>Clear filters. Episodes without a discharge date cannot match a discharge date range.</td>
+<td>Clear filters. ACTS referrals without a discharge date cannot match a discharge date range.</td>
 </tr>
 <tr>
 <td>Cannot confirm a referral or follow-up</td>
@@ -90,24 +94,31 @@
 <p>The repository includes <code>.github/workflows/pages.yml</code>. In repository Settings → Pages, select <strong>GitHub Actions</strong> as the source. Push to <code>main</code> or run the <strong>Test and deploy GitHub Pages</strong> workflow manually. It tests the application and publishes only <code>dist/</code>, with no build step or deployment secret. The published URL is reported by the deployment job. A standard public repository and the included <code>github.io</code> address support the free route.</p>
 <p>The workflow uses standard Ubuntu runners; no Codespaces, larger runners, custom domain or paid add-on is required. GitHub Pages has usage limits; this small research demo is designed for modest evaluation traffic. Exact pricing and limits should be checked before changing the hosting configuration.</p>
 <p>Primary references: <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages">Pages availability</a>, <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages">custom workflows</a>, and <a href="https://docs.github.com/en/billing/concepts/product-billing/github-actions">Actions billing</a>. Checked 12 October 2026.</p>
-</section><section id="section-2"><h2>Recovery Bridge: brief user guide</h2>
-<p>For staff evaluating fictional scenarios. Do not enter real patient information.</p>
-<h3>Start with the team overview</h3>
-<p>Search by fictional episode identifier, name, goal or action. Filter by site, ward, assigned practitioner, discharge dates or action status. <strong>My episodes</strong> uses the selected demonstration staff member; it filters episode assignment, not individual action ownership. Selecting a count card applies an attention filter. Select it again or clear filters to return to the wider view.</p>
-<p>All count cards describe the current filtered episodes. Actions, referrals and follow-ups count individual records; the active episode count counts episodes. The team lead demonstration view also shows workload by action owner. The discharge coordinator view explains the discharge-date ordering. All demonstration views can edit the same synthetic records.</p>
-<h3>Record recovery context</h3>
-<p>Open an episode. In <strong>Recovery support</strong>, add goals in the person&#39;s terms and edit preferences, resources provided and the planned review date. Record practical barriers only when relevant, including any action agreed to address them. Set the barrier review to Reviewed or Not applicable explicitly; an empty section is not assumed to have been reviewed.</p>
-<p>For each support option, record discussion, offer, the person&#39;s decision and arrangement separately. <strong>Discussed</strong>, <strong>Offered</strong>, <strong>Accepted</strong> and <strong>Arranged</strong> describe different stages. Declined support remains visible as a choice. No status changes automatically create or confirm another record.</p>
-<h3>Agree the discharge actions</h3>
-<p>In <strong>Discharge actions</strong>, add a specific action or select relevant items from the example checklist. Review the initial owner and due date, then edit individual items as needed. Every action can retain an unassigned owner or missing date so the gap is visible rather than invented.</p>
-<p>Use <strong>Complete</strong> to record completion and its timestamp. <strong>Reopen</strong> changes it back to Pending and clears the current completion timestamp. Use Edit to change the description, owner, date, status or notes. Declined and Not applicable are recorded decisions, not completed actions.</p>
-<h3>Track referrals and follow-up</h3>
-<p>Record the fictional organisation, purpose, consent status, responsible practitioner and next action. A referral progresses through preparation, submission and acceptance. Submission does not demonstrate engagement. Submitted and Accepted records require a referral date and consent marked Agreed or Not applicable.</p>
-<p>Record follow-up separately, optionally linked to a referral. A Confirmed or Completed arrangement needs a date, contact method, details and responsible practitioner. A proposed appointment stays Pending until confirmed. The service directory contains fictional organisations and never sends a referral.</p>
-<h3>Review the handover</h3>
-<p>The <strong>Handover</strong> section generates a preview from the current episode. It includes agreed support, unresolved work and barriers, referral status, confirmed arrangements and missing details. Edit the text if needed and select Save edited draft. Printing and text export use the preview text and save the current draft first. Printing also allows the browser&#39;s Save as PDF option.</p>
-<p>An edited summary is separate from the episode record. If its source changes, the preview refreshes from the record and earlier edits are not used. Refresh from record explicitly replaces the preview and saved draft after confirmation. Nothing is sent to a receiving service.</p>
-<h3>Understand the counts</h3>
+<h3>Version 2 referral migration</h3>
+<p>The primary record is now an ACTS referral, representing one treatment journey, including post-discharge ACTS contact. Onward referrals are separate linked records. Version 1 browser-local plans are migrated when opened: goals, actions, community referrals and follow-up are retained. The former identifier remains stable. Receipt dates and historical clinical events remain blank because they cannot be inferred. The original <code>recovery-bridge-v1</code> storage is retained as a backup; subsequent saves use <code>recovery-bridge-v2</code>. Reset is optional and restores the new six synthetic journeys.</p>
+<p>Use <strong>Demo settings → Reset demonstration data</strong> to explore the new timeline examples after exporting any synthetic edits you want to keep. Each browser has its own data; opening this URL on another computer starts a separate demonstration.</p>
+</section>
+<section id="section-2"><h2>Recovery Bridge: ACTS staff user guide</h2>
+<p>Version 2.0 · Fictional scenarios only. Do not enter real patient information.</p>
+<h3>Open the referral register</h3>
+<p>The main record is a referral into the Addictions Team (ACTS). Each referral follows one fictional person&#39;s treatment journey, including ACTS follow-up after hospital discharge. A subsequent ACTS referral can be created as a separate journey; the prototype has no cross-referral patient index.</p>
+<p>Search by referral identifier, fictional name, reason, goal, action or treatment event. Filter by journey status, site, ward, assigned practitioner, planned discharge date and action status. The default view shows open journeys: Awaiting assessment, Active treatment and Follow-up. Choose <strong>All journeys</strong> or <strong>Closed</strong> to retrieve earlier journeys. <strong>My referrals</strong> filters by the selected demonstration practitioner; it is not authentication.</p>
+<p>Select an attention count to filter the same records used to calculate the counts. The ACTS referrals card clears the attention filter. All demonstration staff views can edit synthetic records.</p>
+<h3>Create or edit an ACTS referral</h3>
+<p>Choose <strong>New ACTS referral</strong>. Record the fictional patient label, received date and optional time, referral route, reason, assigned ACTS practitioner, location and journey status. Add planned discharge when known. Dates can remain missing and are labelled Not recorded. <strong>Edit referral</strong> updates these fields. Journey status is staff controlled; closing it does not complete actions or prove clinical clearance.</p>
+<h3>Record the treatment journey</h3>
+<p>The <strong>Treatment journey</strong> tab opens by default. Its milestone cards summarise recorded evidence for referral, assessment, treatment/support, discharge and follow-up. They are not clinical progress scores. A planned assessment remains Planned until its actual outcome is recorded.</p>
+<p>Choose <strong>Add treatment event</strong> for triage, initial contact, initial/full assessment, review, detox start/end, recovery planning, support intervention, onward referral activity, discharge planning/discharge, follow-up, journey closure or another event. Enter a brief title, event date, optional time, status, practitioner, method/location, notes, outcome and next action. Contact duration and a previously assessed AUDIT score are optional; the app generates no interpretation or treatment recommendation.</p>
+<p>A Completed, Planned or Not completed event requires a date. Completed and Not completed events cannot be after the demonstration date or before a known ACTS referral date. Planned events may have future dates. A passed planned date is flagged for review and is never automatically completed.</p>
+<p><strong>Summary view</strong> shows the full chronological list with brief context, status and practitioner. <strong>Detailed view</strong> shows contact details, notes, outcome, next action and recording timestamps. Both views use the same events. Filter by event type/status and select earliest or latest first. Undated entries remain visible at the end.</p>
+<p>Changes to goals, support, barriers, actions, onward referrals, follow-up or referral metadata also appear as <strong>Record updates</strong>. These show the save time and demonstration account, not the clinical occurrence date or an authenticated author. Select Treatment events to focus on contacts and milestones. Editing a treatment event updates that event; this is not an immutable audit log.</p>
+<h3>Recovery and discharge coordination</h3>
+<p>Under <strong>Recovery support</strong>, record the person&#39;s goals, preferences, resources, review and relevant barriers. Support discussion, offer, decision and arrangement are independent: Discussed, Offered, Accepted and Arranged are different stages. Keep declined decisions visible.</p>
+<p>Under <strong>Discharge actions</strong>, add tasks or choose relevant example checklist items. Assign owners and due dates. Complete records a timestamp; Reopen restores Pending and clears its current completion timestamp. Missing owners/dates remain visible. Declined and Not applicable are distinct from Completed.</p>
+<p>Under <strong>Onward support</strong>, track referrals ACTS makes to other fictional services. These are separate from the original ACTS referral. Record preparation, submission, acceptance, consent, response and next action. Submission does not demonstrate engagement. Record follow-up separately; confirmation requires date, method, details and practitioner. No referral is transmitted.</p>
+<h3>Review and share the handover</h3>
+<p><strong>Handover</strong> generates an editable preview with the ACTS referral details and dated treatment journey, recovery goals/preferences, agreed support, actions/owners, onward referral status, follow-up and unresolved barriers. Missing information stays visible. Save edited draft before leaving. Print/save as PDF or Export text uses the preview. When source details change, the preview refreshes rather than reusing a stale draft. Nothing is sent to a service.</p>
+<h3>Count definitions</h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -116,36 +127,42 @@
 </tr>
 </thead>
 <tbody><tr>
+<td>ACTS referrals</td>
+<td>Records matching all current filters; the scope also states how many are open</td>
+</tr>
+<tr>
+<td>Assessment to record</td>
+<td>Open journeys without a Completed initial or full assessment event</td>
+</tr>
+<tr>
 <td>Outstanding</td>
 <td>Action status Not recorded, Pending or In progress</td>
 </tr>
 <tr>
 <td>Overdue</td>
-<td>Outstanding action with a due date before the demo date</td>
+<td>Outstanding action with a due date before the demonstration date</td>
 </tr>
 <tr>
 <td>Unassigned</td>
 <td>Outstanding action without an owner</td>
 </tr>
 <tr>
-<td>Awaiting response</td>
-<td>Referral status Submitted</td>
+<td>Onward response pending</td>
+<td>Onward referral status Submitted</td>
 </tr>
 <tr>
 <td>Follow-up to confirm</td>
-<td>Follow-up status Pending or Not recorded</td>
-</tr>
-<tr>
-<td>Completed</td>
-<td>Action explicitly recorded as completed; timestamp is retained until reopened</td>
+<td>Follow-up arrangement status Pending or Not recorded</td>
 </tr>
 </tbody></table></div>
-<p>A missing due date is not automatically overdue. A missing referral or follow-up section does not create a fabricated pending record; the episode and summary show that the information is missing.</p>
-<h3>Save and keyboard use</h3>
-<p>Forms save with their Save button. Confirmation messages report saves. Tab and Shift+Tab move through controls; Enter and Space activate buttons. Episode section tabs also support arrow keys and Home/End. Native dialogs support Escape and modal focus behaviour. The skip link provides direct access to the main content.</p>
-<p>Changes persist only on this browser and device. Demo settings provides checklist configuration, dataset export and a confirmed reset. Checklist progress describes coordination work and does not assess clinical fitness for discharge.</p>
-</section><section id="section-3"><h2>Feature-to-requirement mapping</h2>
-<p>The implementation is intentionally limited to staff evaluation with synthetic episodes.</p>
+<p>Empty sections do not create fabricated tasks or pending referrals. The workspace and handover explicitly show the gaps.</p>
+<h3>Saving and keyboard use</h3>
+<p>Forms save using their Save button. Successful feedback follows the storage write. Changes persist across refreshes in this browser only. Other computers have separate data. One tab per participant is recommended.</p>
+<p>Tab and Shift+Tab move through controls. Enter/Space activate buttons. Arrow keys, Home and End navigate the five workspace tabs. Native modal forms support Escape, focus trapping and return focus. A skip link goes to main content.</p>
+<p>Demo settings provides reusable checklist configuration, the reference date, JSON export and a confirmed reset. Saved version 1 plans are retained as ACTS referrals; earlier clinical history is not invented. Reset only if you want the new synthetic journey examples and have retained any edits you need.</p>
+</section>
+<section id="section-3"><h2>Feature-to-requirement mapping</h2>
+<p>The implementation is intentionally limited to staff evaluation with synthetic ACTS referrals.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -155,14 +172,14 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>A: Active episodes and discharge dates</td>
-<td>Filtered episode list, explicit missing dates, discharge-date ordering</td>
-<td>Team overview</td>
+<td>A: ACTS referrals and planned discharge dates</td>
+<td>Filtered ACTS referral list, explicit missing dates, discharge-date ordering</td>
+<td>ACTS referral register</td>
 </tr>
 <tr>
 <td>A: Outstanding, overdue and unassigned actions</td>
 <td>Shared count functions; unresolved statuses explicitly defined</td>
-<td>Overview and episode action plan; count tests</td>
+<td>Overview and ACTS referral action plan; count tests</td>
 </tr>
 <tr>
 <td>A: Awaiting responses and unconfirmed follow-up</td>
@@ -176,18 +193,18 @@
 </tr>
 <tr>
 <td>A: Labelled, reconciling counts</td>
-<td>Counts derive from the exact episode collection displayed</td>
+<td>Counts derive from the exact ACTS referral collection displayed</td>
 <td>Domain tests plus rendered-count assertions</td>
 </tr>
 <tr>
 <td>B: Coherent workspace</td>
-<td>Episode metadata, four section tabs and next-step prompt</td>
-<td>Episode workspace</td>
+<td>ACTS referral metadata, five section tabs and next-step prompt</td>
+<td>ACTS referral workspace</td>
 </tr>
 <tr>
-<td>B: Create and edit episodes</td>
+<td>B: Create and edit ACTS referrals</td>
 <td>Fictional name, generated identifier, location, practitioner and discharge date</td>
-<td>New episode / Edit episode; interaction and storage tests</td>
+<td>New ACTS referral / Edit referral; interaction and storage tests</td>
 </tr>
 <tr>
 <td>C: Goals and preferences</td>
@@ -217,7 +234,7 @@
 <tr>
 <td>D: No clinical clearance claim</td>
 <td>Coordination-only progress language and explicit clinical responsibility text</td>
-<td>Episode notice, overview footer and summary</td>
+<td>ACTS referral notice, overview footer and summary</td>
 </tr>
 <tr>
 <td>E: Referral detail</td>
@@ -231,7 +248,7 @@
 </tr>
 <tr>
 <td>E: Demonstration directory</td>
-<td>Four clearly fictional organisations and episode-selection workflow</td>
+<td>Four clearly fictional organisations and ACTS referral-selection workflow</td>
 <td>Service directory</td>
 </tr>
 <tr>
@@ -262,7 +279,7 @@
 <tr>
 <td>Varied synthetic scenarios</td>
 <td>Completed planning, incomplete context, unanswered referral, barriers, declined support, proposed follow-up</td>
-<td>DEMO-001 through DEMO-006</td>
+<td>ACTS-DEMO-001 through ACTS-DEMO-006</td>
 </tr>
 <tr>
 <td>Demonstration role switching</td>
@@ -285,108 +302,146 @@
 <thead>
 <tr>
 <th>Entity</th>
-<th>Main fields / relationship</th>
+<th>Fields and relationship</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>State</td>
-<td>schema version, reference date, selected staff view, staff, checklist templates and episodes</td>
+<td>schema 2, reference date, selected demonstration account, staff, templates, ACTS referrals</td>
 </tr>
 <tr>
-<td>Episode</td>
-<td>id, fictional alias, site, ward, practitioner id, planned discharge, Active state, preferences, resources, review, barrierReview, updatedAt</td>
+<td>ACTS referral</td>
+<td>stable id, fictional alias, receivedDate/time, route, reasonForReferral, journeyStatus, site, ward, practitioner, planned discharge, goals, preferences, support, barriers, actions, onward referrals, follow-up, treatment events, recorded updates, handover draft</td>
 </tr>
 <tr>
-<td>Recovery goal</td>
-<td>id, text; belongs to one episode</td>
+<td>Treatment event</td>
+<td>id, type, title, event date/time, status, owner, method/location, optional duration and recorded AUDIT score, notes, outcome, nextAction, recordedAt, updatedAt</td>
 </tr>
 <tr>
-<td>Support option</td>
-<td>id, option, discussed, offered, decision, arrangement, notes; belongs to episode</td>
+<td>Record update</td>
+<td>id, descriptive change, save timestamp, demonstration account; displayed separately from treatment contacts</td>
 </tr>
 <tr>
-<td>Practical barrier</td>
-<td>id, type, context, status, agreed action; belongs to episode</td>
+<td>Onward referral</td>
+<td>id, fictional service, purpose, consent, referral date, practitioner, status, response/outcome, next action</td>
 </tr>
 <tr>
-<td>Discharge action</td>
-<td>id, description, owner staff id or blank, due, status, notes, rationale, completedAt</td>
+<td>Follow-up arrangement</td>
+<td>id, service, optional onwardReferralId, proposed/confirmed date/time, method, details, owner, status, next action</td>
 </tr>
 <tr>
-<td>Referral</td>
-<td>id, service, purpose, consent, date, owner staff id, status, outcome, next action</td>
+<td>Recovery goal / support / barrier</td>
+<td>Separate person-centred context and independent decisions within the ACTS referral</td>
 </tr>
 <tr>
-<td>Follow-up</td>
-<td>id, service, optional referral id, date, time, method, details, owner, status, next action</td>
+<td>Action</td>
+<td>id, description, owner or blank, due date, status, notes, rationale, completedAt</td>
 </tr>
 <tr>
 <td>Handover draft</td>
-<td>text, generating source text and saved timestamp on the episode; distinct from source fields</td>
+<td>editable text, generating source text, saved timestamp; separate from source data</td>
 </tr>
 <tr>
-<td>Demonstration staff</td>
-<td>id, fictional name, role, initials; no credentials or access permissions</td>
-</tr>
-<tr>
-<td>Checklist template</td>
-<td>id, description and rationale; copied into a new action only when selected</td>
+<td>Demonstration staff / checklist</td>
+<td>fictional staff identifiers and reusable selected planning prompts; no authentication</td>
 </tr>
 </tbody></table></div>
-<p>Identifiers relate actions and arrangements to staff and referrals without duplicating demographic data. No NHS number, hospital number, real patient name, diagnosis, prescribing field or real service endpoint is collected.</p>
-<h3>Baseline reconciliation</h3>
-<p>Clear all filters and use the original reference date, 12 October 2026.</p>
+<p>No NHS number, hospital number, real patient details, prescribing instructions or live endpoints are collected. One ACTS referral represents one journey, not a hospital admission. Discharge and ACTS closure are separate events.</p>
+<h3>Referral journey additions</h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Episode / scenario</th>
+<th>Requested behaviour</th>
+<th>Implementation / evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Centre the app on referrals</td>
+<td>ACTS referral register, referral creation/metadata, journey status, default treatment workspace</td>
+</tr>
+<tr>
+<td>Follow the full ACTS journey</td>
+<td>Explicit dated event types from triage/assessment through treatment, discharge, ACTS follow-up and closure</td>
+</tr>
+<tr>
+<td>Summary and detailed event timeline</td>
+<td>Same ordered event collection in two views; detail includes context, outcome, next action and save timestamps</td>
+</tr>
+<tr>
+<td>Show changes across coordination work</td>
+<td>Plan changes recorded as labelled updates, separate from clinical event dates</td>
+</tr>
+<tr>
+<td>Retain completed journeys</td>
+<td>All/Closed/Not accepted filters; closing does not finish actions</td>
+</tr>
+<tr>
+<td>Avoid invented history</td>
+<td>Legacy migration preserves plans and leaves unknown referral dates/history not recorded</td>
+</tr>
+<tr>
+<td>Accurate counts and handover</td>
+<td>Shared domain rules, independently hand-counted fixtures, timeline and migration tests</td>
+</tr>
+</tbody></table></div>
+<h3>Baseline reconciliation</h3>
+<p>Reference date: 12 October 2026. Default filter: All open journeys. Choose All journeys to include Casey.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ACTS referral</th>
+<th>Status</th>
 <th align="right">Actions</th>
 <th align="right">Completed</th>
 <th align="right">Declined / N/A</th>
 <th align="right">Outstanding</th>
 <th align="right">Overdue</th>
 <th align="right">Unassigned</th>
-<th align="right">Awaiting response</th>
+<th align="right">Onward response</th>
 <th align="right">Follow-up to confirm</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>DEMO-001 · Alex</td>
+<td>ACTS-DEMO-001 Alex</td>
+<td>Follow-up</td>
 <td align="right">4</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td>ACTS-DEMO-002 Sam</td>
+<td>Awaiting assessment</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td>ACTS-DEMO-003 Robin</td>
+<td>Active treatment</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td>ACTS-DEMO-004 Jamie</td>
+<td>Active treatment</td>
 <td align="right">3</td>
 <td align="right">0</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr>
-<td>DEMO-002 · Sam</td>
-<td align="right">2</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr>
-<td>DEMO-003 · Robin</td>
-<td align="right">2</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">1</td>
-</tr>
-<tr>
-<td>DEMO-004 · Jamie</td>
-<td align="right">3</td>
-<td align="right">0</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">1</td>
@@ -395,18 +450,20 @@
 <td align="right">1</td>
 </tr>
 <tr>
-<td>DEMO-005 · Casey</td>
+<td>ACTS-DEMO-005 Casey</td>
+<td>Closed</td>
 <td align="right">5</td>
 <td align="right">2</td>
-<td align="right">2</td>
-<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr>
-<td>DEMO-006 · Taylor</td>
+<td>ACTS-DEMO-006 Taylor</td>
+<td>Active treatment</td>
 <td align="right">2</td>
 <td align="right">0</td>
 <td align="right">0</td>
@@ -417,19 +474,33 @@
 <td align="right">1</td>
 </tr>
 <tr>
-<td><strong>Total: 6 active episodes</strong></td>
+<td><strong>All journeys: 6</strong></td>
+<td><strong>5 open</strong></td>
 <td align="right"><strong>18</strong></td>
-<td align="right"><strong>5</strong></td>
+<td align="right"><strong>6</strong></td>
+<td align="right"><strong>3</strong></td>
+<td align="right"><strong>9</strong></td>
+<td align="right"><strong>3</strong></td>
 <td align="right"><strong>2</strong></td>
-<td align="right"><strong>11</strong></td>
+<td align="right"><strong>2</strong></td>
+<td align="right"><strong>3</strong></td>
+</tr>
+<tr>
+<td><strong>Default open view: 5</strong></td>
+<td><strong>1 assessment to record</strong></td>
+<td align="right"><strong>13</strong></td>
+<td align="right"><strong>4</strong></td>
+<td align="right"><strong>0</strong></td>
+<td align="right"><strong>9</strong></td>
 <td align="right"><strong>3</strong></td>
 <td align="right"><strong>2</strong></td>
 <td align="right"><strong>2</strong></td>
 <td align="right"><strong>3</strong></td>
 </tr>
 </tbody></table></div>
-<p>The action categories reconcile: 5 completed + 2 declined / not applicable + 11 outstanding = 18. The pending support arrangement and missing sections are visible separately; they do not generate extra action records or false confirmations.</p>
-</section><section id="section-4"><h2>Behavioural design rationale</h2>
+<p>6 completed + 3 declined/not applicable + 9 outstanding = 18 actions across all journeys. Missing sections and planned treatment events are separate from action counts.</p>
+</section>
+<section id="section-4"><h2>Behavioural design rationale</h2>
 <p>Target behaviour: staff record a person-centred recovery plan, allocate and update coordination actions, verify referral and follow-up progress, and review a clear handover.</p>
 <p>This is a design hypothesis for staff behaviour, not evidence of an effect on staff performance or recovery outcomes. The mapping below is an applied interpretation of Persuasive Systems Design (PSD) and COM-B, to be tested through staff evaluation. It is not a completed behavioural diagnosis of the service.</p>
 <p>COM-B considers capability, opportunity and motivation in relation to behaviour. PSD offers design principles including reduction, tunnelling, tailoring, self-monitoring, reminders and suggestions. The prototype applies selected principles with low-pressure prompts rather than rewards or competitive feedback. [1,2]</p>
@@ -444,7 +515,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>One episode workspace with four sections</td>
+<td>One ACTS referral workspace with four sections</td>
 <td>Find context and update the plan without repeated navigation</td>
 <td>Reduction; tunnelling through a recognisable workflow</td>
 <td>Psychological capability: reduce memory demand; physical opportunity: convenient access</td>
@@ -525,8 +596,64 @@
 <li>Michie, S., van Stralen, M. M. &amp; West, R. (2011). <em>The behaviour change wheel: a new method for characterising and designing behaviour change interventions</em>. Implementation Science, 6, 42. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3096582/">Open-access article</a>.</li>
 </ol>
 <p>Sources checked 12 October 2026. The feature mapping is the prototype designer&#39;s interpretation and should be refined with staff findings.</p>
-</section><section id="section-5"><h2>Recovery Bridge: staff evaluation guide</h2>
-<p>Research prototype · Fictional scenarios only · Version 1.0</p>
+<h3>ACTS referral journey design</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Intended staff behaviour</th>
+<th>COM-B</th>
+<th>Persuasive Systems Design</th>
+<th>Evaluation question</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Referral-centred default workspace</td>
+<td>Review the ongoing ACTS journey, including post-discharge contact</td>
+<td>Psychological capability; physical opportunity</td>
+<td>Reduction; tunnelling</td>
+<td>Can staff distinguish ACTS referral, admission/discharge and onward referral?</td>
+</tr>
+<tr>
+<td>Summary/detail timeline with shared data</td>
+<td>Orient quickly, then inspect event context when needed</td>
+<td>Psychological capability</td>
+<td>Reduction; tailoring</td>
+<td>Can staff reconstruct what happened and what is still planned without losing context?</td>
+</tr>
+<tr>
+<td>Named event responsibility and next action</td>
+<td>Identify who should act next</td>
+<td>Social opportunity</td>
+<td>Cooperation; social facilitation</td>
+<td>Is ownership clear, including unassigned events?</td>
+</tr>
+<tr>
+<td>Evidence-based milestone labels</td>
+<td>Distinguish recorded activity from planned or missing history</td>
+<td>Psychological capability; reflective motivation</td>
+<td>Self-monitoring; feedback</td>
+<td>Do staff understand that milestones are documentation, not clinical clearance?</td>
+</tr>
+<tr>
+<td>Date validation and missing-history prompts</td>
+<td>Record events accurately rather than infer them</td>
+<td>Psychological capability</td>
+<td>Reminders; error prevention within reduction</td>
+<td>Can staff correct dates without unnecessary interruption?</td>
+</tr>
+<tr>
+<td>Visible record updates with separate save times</td>
+<td>Understand changes to coordination plans without mistaking them for clinical contacts</td>
+<td>Psychological capability; social opportunity</td>
+<td>Transparency; feedback</td>
+<td>Can staff tell the event date from the recording time?</td>
+</tr>
+</tbody></table></div>
+<p>These mappings are hypotheses for evaluation, not evidence of behaviour change or recovery benefit. No gamification or clinical effectiveness claim is added.</p>
+</section>
+<section id="section-5"><h2>Recovery Bridge: staff evaluation guide</h2>
+<p>Research prototype · Fictional scenarios only · Version 2.0</p>
 <h3>Aim and boundaries</h3>
 <p>Evaluate whether inpatient alcohol care staff can use the prototype to document recovery priorities, coordinate actions, distinguish referral and follow-up states, and prepare a clear handover. Assess usability, perceived acceptability, appropriateness and feasibility. Do not infer clinical effectiveness, improved recovery or real discharge safety from prototype performance.</p>
 <p>This is a proposed study procedure, not a report of completed evaluation. No participant data or results have been collected.</p>
@@ -547,14 +674,14 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>1. Find the Poole episode planned for discharge on the demo date whose community referral has not been answered. Explain what still needs checking.</td>
-<td>Identifies Robin, DEMO-003; submitted referral, unresolved response and pending follow-up identified.</td>
+<td>1. Find the Poole ACTS referral planned for discharge on the demo date whose community referral has not been answered. Explain what still needs checking.</td>
+<td>Identifies Robin, ACTS-DEMO-003; submitted referral, unresolved response and pending follow-up identified.</td>
 <td>Treats submission as successful engagement or confirmed follow-up.</td>
 </tr>
 <tr>
 <td>2. Open Sam&#39;s plan. Record the fictional goal “Build a daily routine”, a preference for written information, and a review for 13 Oct 2026. Allocate the unassigned goal discussion to Daniel and mark it completed.</td>
 <td>Goal/preferences/review saved; owner Daniel; one completed action with timestamp; Sam&#39;s outstanding count falls from 2 to 1.</td>
-<td>Missing information interpreted as already completed; wrong episode or owner.</td>
+<td>Missing information interpreted as already completed; wrong ACTS referral or owner.</td>
 </tr>
 <tr>
 <td>3. For Jamie, review the housing, transport and communication barriers. Assign the alternative contact-route action to Omar and record that the team will agree a written contact route.</td>
@@ -572,13 +699,13 @@
 <td>Overrides the person&#39;s recorded choice or conflates Declined with Completed.</td>
 </tr>
 <tr>
-<td>6. Create a fictional episode for Jordan at Poole, Demo ward, assigned to Priya, planned discharge 18 Oct 2026. Select only the recovery-goals and follow-up items from the example checklist.</td>
+<td>6. Create a fictional ACTS referral for Jordan received on 12 Oct 2026 from the Ward team at Poole, Demo ward, assigned to Priya, planned discharge 18 Oct 2026. Select only the recovery-goals and follow-up items from the example checklist.</td>
 <td>New record saved; two relevant Pending actions with reviewed owner/date; remaining sections explicitly missing.</td>
 <td>Copies all irrelevant checklist items or invents referral details.</td>
 </tr>
 <tr>
-<td>7. Open Alex&#39;s handover. Check the outstanding action and confirmed appointment; edit the preview to add “Reviewed in fictional team discussion”. Save, refresh the page, reopen Alex and export the handover as text.</td>
-<td>Draft persists unchanged across refresh; remaining action and 16 Oct 14:00 appointment still accurate; exported text matches preview.</td>
+<td>7. Open Alex&#39;s handover. Check the dated discharge event, planned ACTS follow-up and confirmed community appointment; edit the preview to add “Reviewed in fictional team discussion”. Save, refresh the page, reopen Alex and export the handover as text.</td>
+<td>Draft persists unchanged across refresh; planned ACTS contact and 16 Oct 14:00 appointment still accurate; exported text matches preview.</td>
 <td>Loses edits, exports stale information, or assumes the plan proves clinical readiness.</td>
 </tr>
 <tr>
@@ -615,7 +742,7 @@
 </tr>
 <tr>
 <td>Significant errors</td>
-<td>Wrong episode, false confirmation, lost saved data, invented information, overriding declined support, or interpreting checklist completion as clinical clearance</td>
+<td>Wrong ACTS referral, false confirmation, lost saved data, invented information, overriding declined support, or interpreting checklist completion as clinical clearance</td>
 </tr>
 <tr>
 <td>Recoverable errors</td>
@@ -695,8 +822,46 @@
 <li>Weiner, B. J. et al. (2017). <em>Psychometric assessment of three newly developed implementation outcome measures</em>. Implementation Science, 12, 108. <a href="https://link.springer.com/article/10.1186/s13012-017-0635-3">Open-access article and supplementary instrument</a>.</li>
 </ol>
 <p>Sources checked 12 October 2026. Exact instrument administration remains subject to the checks above.</p>
-</section><section id="section-6"><h2>Verification, accessibility and limitations</h2>
-<p>Prototype v1.0 · Checks performed 12 October 2026</p>
+<h3>Additional referral journey tasks</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Scenario task</th>
+<th>Expected evidence</th>
+<th>Errors / observations</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>In Sam&#39;s referral, identify why the initial contact did not happen and when assessment is planned. Record a fictional completed initial assessment on 12 Oct 2026 at 15:00 with Daniel, including an outcome and next action.</td>
+<td>Distinguishes Not completed contact from Planned assessment; new dated event saved; assessment-to-record count reduces by one; journey status remains independently editable.</td>
+<td>Treats a planned assessment as completed; records an impossible future completion; wrong journey.</td>
+</tr>
+<tr>
+<td>Use Alex&#39;s summary timeline to explain the ACTS journey; switch to detailed view to inspect the recorded recovery planning.</td>
+<td>Receipt, assessment, treatment start/end, discharge and planned ACTS follow-up reconstructed accurately.</td>
+<td>Mistakes save timestamp for occurrence date or discharge for ACTS closure.</td>
+</tr>
+<tr>
+<td>Find Casey&#39;s earlier journey and explain the support decision without changing it.</td>
+<td>Retrieves Closed via filter; recognises declined support and separate discharge/closure events.</td>
+<td>Assumes closed records were deleted; equates Declined with Completed.</td>
+</tr>
+<tr>
+<td>Update Robin&#39;s onward referral response, then find that change in the timeline.</td>
+<td>Record update appears with save time, independently of clinical contacts; no automatic successful engagement claim.</td>
+<td>Interprets the update timestamp as when the service clinically accepted the referral.</td>
+</tr>
+<tr>
+<td>Reopen a saved fictional referral after refreshing; verify a new event in both timeline views and handover.</td>
+<td>Same stored date, status, owner, context and outcome preserved and shown.</td>
+<td>Lost edits, missing chronology or inconsistent summary/detail.</td>
+</tr>
+</tbody></table></div>
+<p>For journey tasks measure chronological interpretation accuracy, correct separation of ACTS/onward referrals, event date versus save time, planned versus completed, task time, assistance and errors. Interview: “Does one referral represent the way ACTS follows a person&#39;s journey?”, “Which events are missing?”, “When would you use summary or detail?”, “What would you expect to happen when someone is discharged or re-referred?”</p>
+<p>Use these alongside the SUS, TAM and AIM/IAM/FIM plan above; verify original instrument wording and use requirements before administration. No instrument results or staff findings are fabricated.</p>
+</section>
+<section id="section-6"><h2>Verification, accessibility and limitations</h2>
+<p>Prototype v2.0 · Checks performed 12 October 2026</p>
 <h3>What was verified</h3>
 <p>The automated checks use Node.js with its built-in test runner. Domain tests exercise the actual rules; interaction tests import the actual application and run its event handlers through a lightweight document harness. The harness is not a browser and does not test visual layout or native browser behaviour.</p>
 <div class="table-wrap"><table>
@@ -763,7 +928,7 @@
 <td>Not a penetration test or production security assessment</td>
 </tr>
 </tbody></table></div>
-<p><strong>18 automated tests passed</strong> at the final verification run: two contrast checks, nine domain tests and seven event-handler tests. JavaScript syntax checks also passed. The test output is reproducible using the supplied source package.</p>
+<p><strong>26 automated tests passed</strong> at the final verification run: two contrast checks, sixteen domain/migration/timeline tests and eight event-handler tests. JavaScript syntax checks also passed. The test output is reproducible using the supplied source package.</p>
 <h3>Accessibility design and checks</h3>
 <p>The target is WCAG 2.2 AA; this is not a conformance claim. The primary standard is <a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a>. The focus and target guidance were checked against the W3C explanations for <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html">Focus Not Obscured</a> and <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html">Target Size (Minimum)</a>.</p>
 <div class="table-wrap"><table>
@@ -826,7 +991,7 @@
 </tr>
 </tbody></table></div>
 <p>Selected text-palette contrast ratios against their designed backgrounds are <strong>5.72:1 or higher</strong>, exceeding the normal-text AA threshold of 4.5:1. The input boundary and selected focus-ring pairs exceed 3:1. These are computed colour checks, not an audit of every rendered state. Input borders and the sidebar focus colour were adjusted after the initial check.</p>
-<p>Browser automation and visual preview were unavailable in the execution environment. No browser-based keyboard, screen-reader, zoom, screenshot or print-layout checks are claimed. Complete those checks before formal staff evaluation, using the scenario tasks and a documented browser/device matrix.</p>
+<p>The automated document harness does not establish browser accessibility. Live-browser checks for the version 2 workflow are recorded below; comprehensive screen-reader, zoom, device and print-pagination checks remain required before formal staff evaluation.</p>
 <h3>Assumptions</h3>
 <ul>
 <li>The initial use is dissertation research with fictional scenarios and staff participants.</li>
@@ -840,19 +1005,23 @@
 </ul>
 <h3>Remaining limitations</h3>
 <ol>
-<li>Browser-local storage has no shared database, robust audit trail, conflict resolution, encryption layer, production backup or migration tooling. Multiple tabs can overwrite each other&#39;s changes; use one tab.</li>
+<li>Browser-local storage has no shared database, robust audit trail, conflict resolution, encryption layer, production backup ; version 1 plan migration is implemented. Multiple tabs can overwrite each other&#39;s changes; use one tab.</li>
 <li>Demonstration staff switching provides no authentication, permissions, verified identity or attribution of who performed an edit. Completion timestamps identify time, not authenticated authorship.</li>
 <li>The directory is fictional. There are no external calls, service eligibility checks, live referrals or real appointment verification.</li>
 <li>Summary generation is deterministic and uses recorded data. Editable drafts can diverge intentionally; they require staff review. Source changes replace the active preview with current generated content rather than merging previous edits.</li>
 <li>Blank sections are unknown, not negative findings. Attention counts concern existing entries; they do not quantify every possible planning gap.</li>
 <li>Confirmed follow-up is a staff-recorded status and does not demonstrate attendance, engagement or an outcome. Accepted referrals do not demonstrate successful recovery support.</li>
-<li>The schema is focused on current coordination. There is no episode deletion/archive workflow, attachment store, automatic research telemetry, imported EPR data or comprehensive historical audit.</li>
+<li>The schema follows one ACTS referral journey, including clinical events and recorded plan updates. Closed journeys remain available. There is no cross-referral patient index, deletion workflow, attachment store, automatic research telemetry, imported EPR data or immutable historical audit.</li>
 <li>Browser compatibility, native keyboard/modal behaviour, assistive technology, responsive layout and print pagination require real-browser verification.</li>
 <li>Questionnaire wording and use conditions need final checking; no participant evaluation, usability findings or clinical effectiveness evidence exists.</li>
 <li>A production version would require a separate clinical, technical and organisational design process, including approved identity, secure storage, information governance, clinical safety review and workflow integration. These are future implementation needs, not claimed features of this research prototype.</li>
 </ol>
 <p>The evaluation should first establish whether staff understand and can use the coordination workflow. Wider adoption or clinical impact cannot be inferred from this build.</p>
-</section><section id="section-7"><h2>GitHub repository and Pages hosting</h2>
+<h3>Version 2 journey verification</h3>
+<p>Additional tests cover chronological order in both directions, filtering, visible undated events, explicit receipt, milestone evidence, date/score/duration validation, closed journey retrieval, version 1 migration with retained backup, plan updates versus treatment contacts, event edit timestamps, persisted event forms, view switching and handover chronology. Journey status is independently recorded; closing does not complete tasks. The six synthetic journeys include 20 treatment events, with planned assessment and ACTS follow-up clearly separate from completed activity.</p>
+<p>The full browser accessibility audit remains outstanding. No usability results or clinical effectiveness findings are claimed.</p>
+</section>
+<section id="section-7"><h2>GitHub repository and Pages hosting</h2>
 <p>This copy is prepared for a public repository named <code>recovery-bridge</code> and independent GitHub Pages hosting. It contains no hosting identity, credentials or dependency on the previous hosting provider. Links within the application and research pack are relative, so the application works under a project URL such as <code>https://&lt;your-account&gt;.github.io/recovery-bridge/</code>.</p>
 <h3>Intended configuration</h3>
 <div class="table-wrap"><table>

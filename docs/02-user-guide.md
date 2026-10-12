@@ -1,52 +1,61 @@
-# Recovery Bridge: brief user guide
+# Recovery Bridge: ACTS staff user guide
 
-For staff evaluating fictional scenarios. Do not enter real patient information.
+Version 2.0 · Fictional scenarios only. Do not enter real patient information.
 
-## Start with the team overview
+## Open the referral register
 
-Search by fictional episode identifier, name, goal or action. Filter by site, ward, assigned practitioner, discharge dates or action status. **My episodes** uses the selected demonstration staff member; it filters episode assignment, not individual action ownership. Selecting a count card applies an attention filter. Select it again or clear filters to return to the wider view.
+The main record is a referral into the Addictions Team (ACTS). Each referral follows one fictional person's treatment journey, including ACTS follow-up after hospital discharge. A subsequent ACTS referral can be created as a separate journey; the prototype has no cross-referral patient index.
 
-All count cards describe the current filtered episodes. Actions, referrals and follow-ups count individual records; the active episode count counts episodes. The team lead demonstration view also shows workload by action owner. The discharge coordinator view explains the discharge-date ordering. All demonstration views can edit the same synthetic records.
+Search by referral identifier, fictional name, reason, goal, action or treatment event. Filter by journey status, site, ward, assigned practitioner, planned discharge date and action status. The default view shows open journeys: Awaiting assessment, Active treatment and Follow-up. Choose **All journeys** or **Closed** to retrieve earlier journeys. **My referrals** filters by the selected demonstration practitioner; it is not authentication.
 
-## Record recovery context
+Select an attention count to filter the same records used to calculate the counts. The ACTS referrals card clears the attention filter. All demonstration staff views can edit synthetic records.
 
-Open an episode. In **Recovery support**, add goals in the person's terms and edit preferences, resources provided and the planned review date. Record practical barriers only when relevant, including any action agreed to address them. Set the barrier review to Reviewed or Not applicable explicitly; an empty section is not assumed to have been reviewed.
+## Create or edit an ACTS referral
 
-For each support option, record discussion, offer, the person's decision and arrangement separately. **Discussed**, **Offered**, **Accepted** and **Arranged** describe different stages. Declined support remains visible as a choice. No status changes automatically create or confirm another record.
+Choose **New ACTS referral**. Record the fictional patient label, received date and optional time, referral route, reason, assigned ACTS practitioner, location and journey status. Add planned discharge when known. Dates can remain missing and are labelled Not recorded. **Edit referral** updates these fields. Journey status is staff controlled; closing it does not complete actions or prove clinical clearance.
 
-## Agree the discharge actions
+## Record the treatment journey
 
-In **Discharge actions**, add a specific action or select relevant items from the example checklist. Review the initial owner and due date, then edit individual items as needed. Every action can retain an unassigned owner or missing date so the gap is visible rather than invented.
+The **Treatment journey** tab opens by default. Its milestone cards summarise recorded evidence for referral, assessment, treatment/support, discharge and follow-up. They are not clinical progress scores. A planned assessment remains Planned until its actual outcome is recorded.
 
-Use **Complete** to record completion and its timestamp. **Reopen** changes it back to Pending and clears the current completion timestamp. Use Edit to change the description, owner, date, status or notes. Declined and Not applicable are recorded decisions, not completed actions.
+Choose **Add treatment event** for triage, initial contact, initial/full assessment, review, detox start/end, recovery planning, support intervention, onward referral activity, discharge planning/discharge, follow-up, journey closure or another event. Enter a brief title, event date, optional time, status, practitioner, method/location, notes, outcome and next action. Contact duration and a previously assessed AUDIT score are optional; the app generates no interpretation or treatment recommendation.
 
-## Track referrals and follow-up
+A Completed, Planned or Not completed event requires a date. Completed and Not completed events cannot be after the demonstration date or before a known ACTS referral date. Planned events may have future dates. A passed planned date is flagged for review and is never automatically completed.
 
-Record the fictional organisation, purpose, consent status, responsible practitioner and next action. A referral progresses through preparation, submission and acceptance. Submission does not demonstrate engagement. Submitted and Accepted records require a referral date and consent marked Agreed or Not applicable.
+**Summary view** shows the full chronological list with brief context, status and practitioner. **Detailed view** shows contact details, notes, outcome, next action and recording timestamps. Both views use the same events. Filter by event type/status and select earliest or latest first. Undated entries remain visible at the end.
 
-Record follow-up separately, optionally linked to a referral. A Confirmed or Completed arrangement needs a date, contact method, details and responsible practitioner. A proposed appointment stays Pending until confirmed. The service directory contains fictional organisations and never sends a referral.
+Changes to goals, support, barriers, actions, onward referrals, follow-up or referral metadata also appear as **Record updates**. These show the save time and demonstration account, not the clinical occurrence date or an authenticated author. Select Treatment events to focus on contacts and milestones. Editing a treatment event updates that event; this is not an immutable audit log.
 
-## Review the handover
+## Recovery and discharge coordination
 
-The **Handover** section generates a preview from the current episode. It includes agreed support, unresolved work and barriers, referral status, confirmed arrangements and missing details. Edit the text if needed and select Save edited draft. Printing and text export use the preview text and save the current draft first. Printing also allows the browser's Save as PDF option.
+Under **Recovery support**, record the person's goals, preferences, resources, review and relevant barriers. Support discussion, offer, decision and arrangement are independent: Discussed, Offered, Accepted and Arranged are different stages. Keep declined decisions visible.
 
-An edited summary is separate from the episode record. If its source changes, the preview refreshes from the record and earlier edits are not used. Refresh from record explicitly replaces the preview and saved draft after confirmation. Nothing is sent to a receiving service.
+Under **Discharge actions**, add tasks or choose relevant example checklist items. Assign owners and due dates. Complete records a timestamp; Reopen restores Pending and clears its current completion timestamp. Missing owners/dates remain visible. Declined and Not applicable are distinct from Completed.
 
-## Understand the counts
+Under **Onward support**, track referrals ACTS makes to other fictional services. These are separate from the original ACTS referral. Record preparation, submission, acceptance, consent, response and next action. Submission does not demonstrate engagement. Record follow-up separately; confirmation requires date, method, details and practitioner. No referral is transmitted.
+
+## Review and share the handover
+
+**Handover** generates an editable preview with the ACTS referral details and dated treatment journey, recovery goals/preferences, agreed support, actions/owners, onward referral status, follow-up and unresolved barriers. Missing information stays visible. Save edited draft before leaving. Print/save as PDF or Export text uses the preview. When source details change, the preview refreshes rather than reusing a stale draft. Nothing is sent to a service.
+
+## Count definitions
 
 | Label | Definition |
 | --- | --- |
+| ACTS referrals | Records matching all current filters; the scope also states how many are open |
+| Assessment to record | Open journeys without a Completed initial or full assessment event |
 | Outstanding | Action status Not recorded, Pending or In progress |
-| Overdue | Outstanding action with a due date before the demo date |
+| Overdue | Outstanding action with a due date before the demonstration date |
 | Unassigned | Outstanding action without an owner |
-| Awaiting response | Referral status Submitted |
-| Follow-up to confirm | Follow-up status Pending or Not recorded |
-| Completed | Action explicitly recorded as completed; timestamp is retained until reopened |
+| Onward response pending | Onward referral status Submitted |
+| Follow-up to confirm | Follow-up arrangement status Pending or Not recorded |
 
-A missing due date is not automatically overdue. A missing referral or follow-up section does not create a fabricated pending record; the episode and summary show that the information is missing.
+Empty sections do not create fabricated tasks or pending referrals. The workspace and handover explicitly show the gaps.
 
-## Save and keyboard use
+## Saving and keyboard use
 
-Forms save with their Save button. Confirmation messages report saves. Tab and Shift+Tab move through controls; Enter and Space activate buttons. Episode section tabs also support arrow keys and Home/End. Native dialogs support Escape and modal focus behaviour. The skip link provides direct access to the main content.
+Forms save using their Save button. Successful feedback follows the storage write. Changes persist across refreshes in this browser only. Other computers have separate data. One tab per participant is recommended.
 
-Changes persist only on this browser and device. Demo settings provides checklist configuration, dataset export and a confirmed reset. Checklist progress describes coordination work and does not assess clinical fitness for discharge.
+Tab and Shift+Tab move through controls. Enter/Space activate buttons. Arrow keys, Home and End navigate the five workspace tabs. Native modal forms support Escape, focus trapping and return focus. A skip link goes to main content.
+
+Demo settings provides reusable checklist configuration, the reference date, JSON export and a confirmed reset. Saved version 1 plans are retained as ACTS referrals; earlier clinical history is not invented. Reset only if you want the new synthetic journey examples and have retained any edits you need.

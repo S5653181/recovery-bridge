@@ -1,12 +1,12 @@
 # Recovery Bridge: setup and run
 
-Version 1.0 · 12 October 2026 · Research prototype · Synthetic data only
+Version 2.0 · 12 October 2026 · Research prototype · Synthetic data only
 
 Recovery Bridge supports recovery planning and discharge coordination for inpatient alcohol care staff. It does not make clinical decisions or connect to clinical systems.
 
 ## Open the GitHub Pages prototype
 
-Use the supplied GitHub Pages application link. The published demonstration site is public. A normal modern desktop or tablet browser is sufficient. The first visit loads six fictional episodes; no sign-up or patient details are required inside the prototype. No ChatGPT sign-in is required. The demonstration staff selector is a viewpoint control, not authentication.
+Use the supplied GitHub Pages application link. The published demonstration site is public. A normal modern desktop or tablet browser is sufficient. The first visit loads six fictional ACTS referrals; no sign-up or patient details are required inside the prototype. No ChatGPT sign-in is required. The demonstration staff selector is a viewpoint control, not authentication.
 
 ## Run a local copy
 
@@ -38,15 +38,16 @@ The prototype uses semantic HTML, CSS and browser-native JavaScript modules. Kee
 | `dist/styles.css` | Responsive interface, focus styles, status labels and print layout |
 | `dist/data.mjs` | Six synthetic scenarios, five demonstration staff and fictional directory |
 | `dist/core.mjs` | Filters, counts, status rules, validators, storage and handover generation |
+| `dist/journey.mjs` | Treatment timeline, milestones, event validation and recorded plan updates |
 | `dist/app.mjs` | Rendering, forms, navigation and interaction handlers |
 | `dist/research.html` | Separate human-readable research and implementation pack |
 | `tests/` | Domain and event-handler tests; no browser engine |
 
 ## Persistence and reset
 
-Saved forms write a versioned JSON object to the browser's local storage, under `recovery-bridge-v1`. Changes survive refreshes on that browser and origin. Unsaved form edits are discarded on Cancel; handover preview edits require Save edited draft. A successful save message follows a completed storage write. A failed write leaves the previous saved state unchanged.
+Saved forms write a versioned JSON object to the browser's local storage, under `recovery-bridge-v2`. Changes survive refreshes on that browser and origin. Unsaved form edits are discarded on Cancel; handover preview edits require Save edited draft. A successful save message follows a completed storage write. A failed write leaves the previous saved state unchanged.
 
-Demo settings can export the current synthetic dataset as JSON. The JSON export is a backup for inspection, not an implemented import workflow. Reset demonstration data restores the original six episodes, checklist, staff viewpoint and fixed reference date. Reset requires an explicit in-app confirmation because it discards local edits.
+Demo settings can export the current synthetic dataset as JSON. The JSON export is a backup for inspection, not an implemented import workflow. Reset demonstration data restores the original six ACTS referrals, checklist, staff viewpoint and fixed reference date. Reset requires an explicit in-app confirmation because it discards local edits.
 
 If saved data is unreadable, the prototype displays a warning and blocks new saves until reset; it does not silently replace the unreadable data.
 
@@ -56,9 +57,9 @@ The reference date is initially **12 October 2026**. Overdue means due before th
 
 | Symptom | Check |
 | --- | --- |
-| Blank local page | Serve `dist/` over HTTP; ensure all three `.mjs` files and `styles.css` were extracted. |
+| Blank local page | Serve `dist/` over HTTP; ensure all four `.mjs` files and `styles.css` were extracted. |
 | Changes do not persist | Enable browser storage; avoid private browsing for retained evaluation sessions. Read the save feedback. |
-| No rows after filtering | Clear filters. Episodes without a discharge date cannot match a discharge date range. |
+| No rows after filtering | Clear filters. ACTS referrals without a discharge date cannot match a discharge date range. |
 | Cannot confirm a referral or follow-up | Review the form validation. A confirmed arrangement needs its actual contact details. |
 | Counts differ from the baseline | Clear all filters, restore the demonstration date, or reset local scenario edits. |
 
@@ -71,3 +72,9 @@ The repository includes `.github/workflows/pages.yml`. In repository Settings �
 The workflow uses standard Ubuntu runners; no Codespaces, larger runners, custom domain or paid add-on is required. GitHub Pages has usage limits; this small research demo is designed for modest evaluation traffic. Exact pricing and limits should be checked before changing the hosting configuration.
 
 Primary references: [Pages availability](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages), [custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages), and [Actions billing](https://docs.github.com/en/billing/concepts/product-billing/github-actions). Checked 12 October 2026.
+
+## Version 2 referral migration
+
+The primary record is now an ACTS referral, representing one treatment journey, including post-discharge ACTS contact. Onward referrals are separate linked records. Version 1 browser-local plans are migrated when opened: goals, actions, community referrals and follow-up are retained. The former identifier remains stable. Receipt dates and historical clinical events remain blank because they cannot be inferred. The original `recovery-bridge-v1` storage is retained as a backup; subsequent saves use `recovery-bridge-v2`. Reset is optional and restores the new six synthetic journeys.
+
+Use **Demo settings → Reset demonstration data** to explore the new timeline examples after exporting any synthetic edits you want to keep. Each browser has its own data; opening this URL on another computer starts a separate demonstration.
